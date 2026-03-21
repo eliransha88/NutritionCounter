@@ -1,4 +1,5 @@
 import SwiftUI
+import NutritionCore
 
 @main
 struct NutritionCounterApp: App {

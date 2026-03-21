@@ -1,4 +1,6 @@
 import SwiftUI
+import NutritionCore
+import NutritionHome
 
 struct ContentView: View {
     var store: NutritionStore

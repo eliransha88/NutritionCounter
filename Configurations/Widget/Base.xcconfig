@@ -24,5 +24,4 @@ SWIFT_EMIT_LOC_STRINGS = YES
 SKIP_INSTALL = YES
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @executable_path/../../Frameworks
 
-// MARK: - Entitlements
-CODE_SIGN_ENTITLEMENTS = NutritionWidgetExtension.entitlements
+// Note: CODE_SIGN_ENTITLEMENTS is set per-target by Tuist via the entitlements: parameter.

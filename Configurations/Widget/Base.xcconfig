@@ -1,0 +1,28 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Widget/Base.xcconfig
+// Shared settings for the NutritionWidgetExtension target (Debug + Release).
+// ─────────────────────────────────────────────────────────────────────────────
+
+#include "../Base.xcconfig"
+
+// MARK: - Platform
+SDKROOT = iphoneos
+TARGETED_DEVICE_FAMILY = 1,2
+
+// MARK: - Assets
+ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor
+ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground
+
+// MARK: - Swift
+SWIFT_VERSION = 5.0
+SWIFT_STRICT_CONCURRENCY = targeted
+SWIFT_APPROACHABLE_CONCURRENCY = YES
+SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES
+SWIFT_EMIT_LOC_STRINGS = YES
+
+// MARK: - Extension
+SKIP_INSTALL = YES
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @executable_path/../../Frameworks
+
+// MARK: - Entitlements
+CODE_SIGN_ENTITLEMENTS = NutritionWidgetExtension.entitlements

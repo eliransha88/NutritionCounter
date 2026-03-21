@@ -1,0 +1,28 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// App/Base.xcconfig
+// Shared settings for the NutritionCounter app target (Debug + Release).
+// ─────────────────────────────────────────────────────────────────────────────
+
+#include "../Base.xcconfig"
+
+// MARK: - Platform
+SDKROOT = auto
+SUPPORTED_PLATFORMS = iphoneos iphonesimulator
+SUPPORTS_MACCATALYST = NO
+TARGETED_DEVICE_FAMILY = 1,2
+
+// MARK: - Assets
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor
+
+// MARK: - Swift
+SWIFT_VERSION = 5.0
+SWIFT_STRICT_CONCURRENCY = targeted
+SWIFT_EMIT_LOC_STRINGS = YES
+
+// MARK: - Previews
+ENABLE_PREVIEWS = YES
+DEVELOPMENT_ASSET_PATHS = "NutritionCounter/Preview Content"
+
+// MARK: - Entitlements
+CODE_SIGN_ENTITLEMENTS = NutritionCounter/NutritionCounter.entitlements

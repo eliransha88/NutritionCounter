@@ -40,17 +40,9 @@ let appTarget = Target.target(
         .target(name: "NutritionWidgetExtension"),
     ],
     settings: .settings(
-        base: [
-            "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
-            "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
-            "SWIFT_STRICT_CONCURRENCY": "targeted",
-            "SWIFT_EMIT_LOC_STRINGS": "YES",
-            "ENABLE_PREVIEWS": "YES",
-            "DEVELOPMENT_ASSET_PATHS": "\"NutritionCounter/Preview Content\"",
-            "MARKETING_VERSION": "1.0",
-            "CURRENT_PROJECT_VERSION": "1",
-            "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator",
-            "SUPPORTS_MACCATALYST": "NO",
+        configurations: [
+            .debug(name: "Debug", xcconfig: "Configurations/App/Debug.xcconfig"),
+            .release(name: "Release", xcconfig: "Configurations/App/Release.xcconfig"),
         ]
     )
 )
@@ -78,16 +70,9 @@ let widgetTarget = Target.target(
     ],
     entitlements: .file(path: "NutritionWidgetExtension.entitlements"),
     settings: .settings(
-        base: [
-            "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
-            "ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME": "WidgetBackground",
-            "SWIFT_STRICT_CONCURRENCY": "targeted",
-            "SWIFT_APPROACHABLE_CONCURRENCY": "YES",
-            "SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY": "YES",
-            "SWIFT_EMIT_LOC_STRINGS": "YES",
-            "SKIP_INSTALL": "YES",
-            "MARKETING_VERSION": "1.0",
-            "CURRENT_PROJECT_VERSION": "1",
+        configurations: [
+            .debug(name: "Debug", xcconfig: "Configurations/Widget/Debug.xcconfig"),
+            .release(name: "Release", xcconfig: "Configurations/Widget/Release.xcconfig"),
         ]
     )
 )
@@ -97,14 +82,6 @@ let widgetTarget = Target.target(
 let project = Project(
     name: "NutritionCounter",
     organizationName: "eliransharabi",
-    settings: .settings(
-        base: [
-            "LOCALIZATION_PREFERS_STRING_CATALOGS": "YES",
-            "STRING_CATALOG_GENERATE_SYMBOLS": "YES",
-            "ENABLE_USER_SCRIPT_SANDBOXING": "YES",
-            "DEAD_CODE_STRIPPING": "YES",
-        ]
-    ),
     targets: [
         appTarget,
         widgetTarget,

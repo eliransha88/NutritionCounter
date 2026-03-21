@@ -1,0 +1,16 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Widget/Release.xcconfig
+// Release-only overrides for the NutritionWidgetExtension target.
+// ─────────────────────────────────────────────────────────────────────────────
+
+#include "Base.xcconfig"
+
+// MARK: - Optimisation
+SWIFT_OPTIMIZATION_LEVEL = -O
+GCC_OPTIMIZATION_LEVEL = s
+
+// MARK: - Debug info
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+
+// MARK: - Validation
+VALIDATE_PRODUCT = YES

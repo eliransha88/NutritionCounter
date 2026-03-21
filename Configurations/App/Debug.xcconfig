@@ -1,0 +1,16 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// App/Debug.xcconfig
+// Debug-only overrides for the NutritionCounter app target.
+// ─────────────────────────────────────────────────────────────────────────────
+
+#include "Base.xcconfig"
+
+// MARK: - Optimisation
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+GCC_OPTIMIZATION_LEVEL = 0
+
+// MARK: - Debug info
+DEBUG_INFORMATION_FORMAT = dwarf
+
+// MARK: - Testability
+ENABLE_TESTABILITY = YES

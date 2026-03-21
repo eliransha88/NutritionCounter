@@ -1,3 +1,44 @@
-*.xcscheme
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode user data
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
 *.xcbkptlist
+xcuserdata/
+
+# Xcode scheme management (shared schemes are kept, personal ones are not)
 NutritionCounter.xcodeproj/xcuserdata/eliransharabi.xcuserdatad/xcschemes/xcschememanagement.plist
+
+# Build output
+build/
+DerivedData/
+*.o
+*.d
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+
+# CocoaPods (not used, but just in case)
+Pods/
+Podfile.lock
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Editor
+*.swp
+*.swo
+*~
+.idea/

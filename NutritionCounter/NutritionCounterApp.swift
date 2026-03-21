@@ -1,17 +1,15 @@
-//
-//  NutritionCounterApp.swift
-//  NutritionCounter
-//
-//  Created by Eliran Sharabi on 12/08/2025.
-//
-
 import SwiftUI
 
 @main
 struct NutritionCounterApp: App {
+    @State private var store = NutritionStore()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(store: store)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    store.handleAppBecameActive()
+                }
         }
     }
 }

@@ -1,24 +1,13 @@
-//
-//  ContentView.swift
-//  NutritionCounter
-//
-//  Created by Eliran Sharabi on 12/08/2025.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    var store: NutritionStore
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        DailyTrackerView(store: store)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(store: NutritionStore())
 }

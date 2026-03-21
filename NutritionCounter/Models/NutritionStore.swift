@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import OSLog
 import WidgetKit
 
 @MainActor @Observable
@@ -9,6 +10,7 @@ final class NutritionStore {
 
     private let storage = UserDefaults(suiteName: AppGroup.suiteName) ?? .standard
     private let calendar = Calendar.current
+    private let logger = Logger(subsystem: "com.eliransharabi.NutritionCounter", category: "NutritionStore")
 
     init() {
         loadData()
@@ -28,12 +30,16 @@ final class NutritionStore {
     }
 
     func saveData() {
-        if let goalsData = try? JSONEncoder().encode(dailyGoals) {
-            storage.set(goalsData, forKey: AppGroup.goalsKey)
+        do {
+            storage.set(try JSONEncoder().encode(dailyGoals), forKey: AppGroup.goalsKey)
+        } catch {
+            logger.error("Failed to encode dailyGoals: \(error)")
         }
 
-        if let logsData = try? JSONEncoder().encode(weeklyLogs) {
-            storage.set(logsData, forKey: AppGroup.logsKey)
+        do {
+            storage.set(try JSONEncoder().encode(weeklyLogs), forKey: AppGroup.logsKey)
+        } catch {
+            logger.error("Failed to encode weeklyLogs: \(error)")
         }
 
         WidgetCenter.shared.reloadTimelines(ofKind: AppGroup.widgetKind)

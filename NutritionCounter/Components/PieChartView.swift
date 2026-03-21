@@ -8,8 +8,22 @@ struct PieChartView: View {
     let proteinGoal: Double
     let carbsGoal: Double
     let fatGoal: Double
-
+    
+    private var hasData: Bool { protein + carbs + fat > 0 }
+    
     var body: some View {
+        if hasData {
+            chartContent
+        } else {
+            ContentUnavailableView(
+                "No servings logged yet",
+                systemImage: "fork.knife",
+                description: Text("Tap + on a nutrient below to start tracking")
+            )
+        }
+    }
+    
+    private var chartContent: some View {
         HStack(spacing: 8) {
             Chart {
                 SectorMark(
@@ -19,7 +33,7 @@ struct PieChartView: View {
                 )
                 .foregroundStyle(.blue)
                 .opacity(0.8)
-
+                
                 SectorMark(
                     angle: .value("Carbs", carbs),
                     innerRadius: .ratio(0.4),
@@ -27,7 +41,7 @@ struct PieChartView: View {
                 )
                 .foregroundStyle(.orange)
                 .opacity(0.8)
-
+                
                 SectorMark(
                     angle: .value("Fat", fat),
                     innerRadius: .ratio(0.4),
@@ -41,36 +55,32 @@ struct PieChartView: View {
             .chartLegend {
                 HStack(spacing: 16) {
                     HStack(spacing: 4) {
-                        Circle()
-                            .fill(.blue)
-                            .frame(width: 8, height: 8)
-                        Text("Protein")
-                            .font(.caption)
+                        Circle().fill(.blue).frame(width: 8, height: 8)
+                        Text("Protein").font(.caption)
                     }
-
                     HStack(spacing: 4) {
-                        Circle()
-                            .fill(.orange)
-                            .frame(width: 8, height: 8)
-                        Text("Carbs")
-                            .font(.caption)
+                        Circle().fill(.orange).frame(width: 8, height: 8)
+                        Text("Carbs").font(.caption)
                     }
-
                     HStack(spacing: 4) {
-                        Circle()
-                            .fill(.green)
-                            .frame(width: 8, height: 8)
-                        Text("Fat")
-                            .font(.caption)
+                        Circle().fill(.green).frame(width: 8, height: 8)
+                        Text("Fat").font(.caption)
                     }
                 }
             }
-
+            .accessibilityLabel(
+                """
+Daily intake: Protein \(protein, format: .number.precision(.fractionLength(1))) servings,
+                "Carbs \(carbs, format: .number.precision(.fractionLength(1))) servings,
+                Fat \(fat, format: .number.precision(.fractionLength(1))) servings
+"""
+            )
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Daily Totals")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-
+                
                 HStack(spacing: 16) {
                     VStack(spacing: 2) {
                         Text("P")
@@ -81,7 +91,7 @@ struct PieChartView: View {
                             .font(.caption)
                             .fontWeight(.semibold)
                     }
-
+                    
                     VStack(spacing: 2) {
                         Text("C")
                             .font(.caption)
@@ -91,7 +101,7 @@ struct PieChartView: View {
                             .font(.caption)
                             .fontWeight(.semibold)
                     }
-
+                    
                     VStack(spacing: 2) {
                         Text("F")
                             .font(.caption)
@@ -101,7 +111,7 @@ struct PieChartView: View {
                             .font(.caption)
                             .fontWeight(.semibold)
                     }
-
+                    
                     Spacer()
                 }
             }
@@ -109,7 +119,7 @@ struct PieChartView: View {
     }
 }
 
-#Preview {
+#Preview("With Data") {
     PieChartView(
         protein: 2.5,
         carbs: 3.0,
@@ -119,4 +129,16 @@ struct PieChartView: View {
         fatGoal: 2.0
     )
     .frame(width: 200, height: 200)
+}
+
+#Preview("Empty State") {
+    PieChartView(
+        protein: 0,
+        carbs: 0,
+        fat: 0,
+        proteinGoal: 3.0,
+        carbsGoal: 4.0,
+        fatGoal: 2.0
+    )
+    .frame(width: 300, height: 150)
 }

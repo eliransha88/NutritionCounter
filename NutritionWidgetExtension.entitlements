@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.salesforce.fieldservice.NutritionCounter</string>
+		<string>group.com.eliransharabi.NutritionCounter</string>
 	</array>
 </dict>
 </plist>

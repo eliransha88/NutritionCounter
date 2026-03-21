@@ -35,6 +35,7 @@ struct NutrientCounterView: View {
                 .font(.largeTitle)
                 .foregroundStyle(nutrientColor)
                 .symbolEffect(.pulse)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(nutrient.rawValue)
@@ -61,6 +62,14 @@ struct NutrientCounterView: View {
             .foregroundStyle(.secondary)
             .labelStyle(.iconOnly)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+        """
+            \(nutrient.rawValue): goal reached.
+            \(value, format: .number.precision(.fractionLength(1))) of 
+            \(goal, format: .number.precision(.fractionLength(1))) servings.
+        """
+        )
     }
 
     // MARK: - Normal counter state

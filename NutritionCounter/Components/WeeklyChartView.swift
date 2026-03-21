@@ -26,6 +26,7 @@ struct WeeklyChartView: View {
             }
         }
         .chartLegend(position: .bottom)
+        .accessibilityLabel("Weekly nutrient intake chart showing protein, carbs, and fat servings for each day of the week")
         .chartXAxis {
             AxisMarks { _ in
                 AxisValueLabel()

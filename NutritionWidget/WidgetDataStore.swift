@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Read-only store (synchronous, safe to call from TimelineProvider callbacks)
 
 enum WidgetDataStore {
-    private static let suiteName = "group.com.salesforce.fieldservice.NutritionCounter"
+    private static let suiteName = "group.com.eliransharabi.NutritionCounter"
     private static let goalsKey = "DailyGoals"
     private static let logsKey = "WeeklyLogs"
     static let widgetKind = "NutritionWidget"

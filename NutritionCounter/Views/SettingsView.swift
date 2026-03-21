@@ -35,7 +35,7 @@ struct SettingsView: View {
                     )
 
                     NutrientGoalRow(
-                        title: "Carbohydrates",
+                        title: "Carbs",
                         value: $carbsGoal,
                         color: .orange
                     )
@@ -58,6 +58,15 @@ struct SettingsView: View {
                     .padding()
                     .background(.blue)
                     .clipShape(.rect(cornerRadius: 10))
+                }
+
+                Section {
+                    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "–"
+                    let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "–"
+                    Text("Version \(version) (\(build))")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .navigationTitle("Daily Goals")

@@ -1,13 +1,20 @@
 import SwiftUI
 
 struct DayHeaderView: View {
+    private var midnightSchedule: PeriodicTimelineSchedule {
+        let tomorrow = Calendar.current.startOfDay(for: .now.addingTimeInterval(86400))
+        return .periodic(from: tomorrow, by: 86400)
+    }
+
     var body: some View {
-        HStack {
-            Text(Date.now, format: .dateTime.weekday(.wide))
-                .font(.largeTitle)
-                .bold()
-                .foregroundStyle(.primary)
-            Spacer()
+        TimelineView(midnightSchedule) { context in
+            HStack {
+                Text(context.date, format: .dateTime.weekday(.wide))
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundStyle(.primary)
+                Spacer()
+            }
         }
     }
 }

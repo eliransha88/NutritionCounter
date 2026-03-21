@@ -7,7 +7,7 @@ struct NutrientGoalRow: View {
 
     var body: some View {
         HStack {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .foregroundStyle(.primary)
                 .font(.body)
                 .transition(.opacity.combined(with: .move(edge: .leading)))

@@ -10,6 +10,14 @@ struct PieChartView: View {
     let fatGoal: Double
     
     private var hasData: Bool { protein + carbs + fat > 0 }
+
+    private func value(for nutrient: NutrientType) -> Double {
+        switch nutrient {
+        case .protein: protein
+        case .carbs: carbs
+        case .fat: fat
+        }
+    }
     
     var body: some View {
         if hasData {
@@ -80,38 +88,19 @@ Daily intake: Protein \(protein, format: .number.precision(.fractionLength(1))) 
                 Text("Daily Totals")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                
+
                 HStack(spacing: 16) {
-                    VStack(spacing: 2) {
-                        Text("P")
-                            .font(.caption)
-                            .foregroundStyle(.blue)
-                            .accessibilityLabel("Protein")
-                        Text(protein, format: .number.precision(.fractionLength(1)))
-                            .font(.caption)
-                            .fontWeight(.semibold)
+                    ForEach(NutrientType.allCases, id: \.self) { nutrient in
+                        VStack(spacing: 2) {
+                            Text(nutrient.localizedAbbreviation)
+                                .font(.caption)
+                                .foregroundStyle(nutrient.color)
+                                .accessibilityLabel(Text(nutrient.localizedName))
+                            Text(value(for: nutrient), format: .number.precision(.fractionLength(1)))
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                        }
                     }
-                    
-                    VStack(spacing: 2) {
-                        Text("C")
-                            .font(.caption)
-                            .foregroundStyle(.orange)
-                            .accessibilityLabel("Carbs")
-                        Text(carbs, format: .number.precision(.fractionLength(1)))
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                    }
-                    
-                    VStack(spacing: 2) {
-                        Text("F")
-                            .font(.caption)
-                            .foregroundStyle(.green)
-                            .accessibilityLabel("Fat")
-                        Text(fat, format: .number.precision(.fractionLength(1)))
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                    }
-                    
                     Spacer()
                 }
             }

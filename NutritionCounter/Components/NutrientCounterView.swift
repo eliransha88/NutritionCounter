@@ -38,7 +38,7 @@ struct NutrientCounterView: View {
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(nutrient.rawValue)
+                Text(nutrient.localizedName)
                     .font(.headline)
                     .foregroundStyle(.primary)
 
@@ -46,11 +46,11 @@ struct NutrientCounterView: View {
                     .font(.subheadline.bold())
                     .foregroundStyle(.green)
 
-                let valueText = Text(value, format: .number.precision(.fractionLength(1)))
-                let goalText = Text(goal, format: .number.precision(.fractionLength(1)))
-                Text("\(valueText)/\(goalText) servings")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                Text(
+                    "\(value, format: .number.precision(.fractionLength(1)))/\(goal, format: .number.precision(.fractionLength(1))) servings"
+                )
+                .font(.caption)
+                .foregroundStyle(.secondary)
             }
 
             Spacer()
@@ -63,13 +63,11 @@ struct NutrientCounterView: View {
             .labelStyle(.iconOnly)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(
-        """
-            \(nutrient.rawValue): goal reached.
-            \(value, format: .number.precision(.fractionLength(1))) of 
-            \(goal, format: .number.precision(.fractionLength(1))) servings.
-        """
-        )
+        .accessibilityLabel(Text(verbatim:
+            "\(nutrient.rawValue): goal reached. " +
+            "\(value.formatted(.number.precision(.fractionLength(1)))) of " +
+            "\(goal.formatted(.number.precision(.fractionLength(1)))) servings."
+        ))
     }
 
     // MARK: - Normal counter state
@@ -77,17 +75,17 @@ struct NutrientCounterView: View {
     private var counterContent: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(nutrient.rawValue)
+                Text(nutrient.localizedName)
                     .font(.headline)
                     .foregroundStyle(.primary)
 
-                let valueText = Text(value, format: .number.precision(.fractionLength(1)))
-                let goalText = Text(goal, format: .number.precision(.fractionLength(1)))
-                Text("\(valueText)/\(goalText) servings")
-                    .font(.subheadline)
-                    .foregroundStyle(servingsTextColor)
-                    .scaleEffect(valueScale)
-                    .animation(.spring(response: 0.3, dampingFraction: 0.6), value: value)
+                Text(
+                    "\(value, format: .number.precision(.fractionLength(1)))/\(goal, format: .number.precision(.fractionLength(1))) servings"
+                )
+                .font(.subheadline)
+                .foregroundStyle(servingsTextColor)
+                .scaleEffect(valueScale)
+                .animation(.spring(response: 0.3, dampingFraction: 0.6), value: value)
 
                 ProgressView(value: min(value, goal), total: goal)
                     .progressViewStyle(LinearProgressViewStyle(tint: nutrientColor))

@@ -1,4 +1,4 @@
-# NutritionCounter
+# Nutrition Counter
 
 A focused iOS app for tracking daily macronutrient intake — protein, carbs, and fat — in half-serving increments. Built entirely with SwiftUI, Swift Charts, and modern Swift Concurrency.
 
@@ -20,6 +20,7 @@ A focused iOS app for tracking daily macronutrient intake — protein, carbs, an
 ### Settings
 - Per-nutrient daily goal, adjustable in 0.5-serving steps (minimum 0.5)
 - Goals and logs persist across launches via an App Group `UserDefaults` suite shared with the widget
+- Language row that navigates directly to the app's iOS Settings page for system-managed per-app language selection
 - App version displayed in the footer for easy support identification
 
 ### Home Screen Widget
@@ -28,6 +29,13 @@ A focused iOS app for tracking daily macronutrient intake — protein, carbs, an
 - **Large** — full cards per nutrient with − and + AppIntent buttons; congratulations banner replaces the controls when a goal is met
 - Tapping widget buttons runs `IncrementNutrientIntent` / `DecrementNutrientIntent` via `AppIntents` — no app launch needed
 - Widget reloads its timeline automatically when the main app saves data
+
+### Localisation
+- Full **English and Hebrew** support via `Localizable.xcstrings` and `InfoPlist.xcstrings` in both the app and widget targets
+- App display name localised: **"Nutrition Counter"** (English) / **"מונה תזונה"** (Hebrew)
+- All UI strings, nutrient names, and widget labels are translatable through the Strings Catalog
+- Nutrient abbreviations are derived dynamically from the first character of the localised name (no hardcoded letters)
+- Switching language is handled at the system level via **Settings → Nutrition Counter → Language**
 
 ---
 
@@ -49,9 +57,11 @@ NutritionCounter (app target)          NutritionWidgetExtension (widget target)
 │   ├── PieChartView.swift
 │   ├── WeeklyChartView.swift
 │   └── DayHeaderView.swift (TimelineView)
-└── Shared/
-    └── AppGroup.swift
-         App Group: group.com.eliransharabi.NutritionCounter
+├── Shared/
+│   └── AppGroup.swift
+│        App Group: group.com.eliransharabi.NutritionCounter
+├── Localizable.xcstrings              (English + Hebrew UI strings)
+└── InfoPlist.xcstrings                (Localised app display name)
 ```
 
 **Key patterns**
@@ -64,6 +74,8 @@ NutritionCounter (app target)          NutritionWidgetExtension (widget target)
 | Error logging | `os.Logger` (zero-cost in release) |
 | Stale date header | `TimelineView(.periodic)` rolls over at midnight |
 | Concurrency safety | `SWIFT_STRICT_CONCURRENCY = targeted` on both targets |
+| Localisation | `Localizable.xcstrings` + `InfoPlist.xcstrings` (en / he) |
+| Language switching | System-managed via iOS Settings (per-app language) |
 
 ---
 
@@ -97,10 +109,25 @@ NutritionCounter/
 │   ├── Models/
 │   ├── Views/
 │   ├── Components/
-│   └── Shared/
+│   ├── Shared/
+│   ├── Localizable.xcstrings
+│   └── InfoPlist.xcstrings
 ├── NutritionWidget/           Widget extension target
+│   └── Localizable.xcstrings
 └── NutritionCounter.xcodeproj
 ```
+
+---
+
+## Localisation
+
+The app ships with English and Hebrew translations. To add a new language:
+
+1. Open `NutritionCounter/Localizable.xcstrings` and `NutritionWidget/Localizable.xcstrings` in Xcode.
+2. Click **+** next to the language column and select the new locale.
+3. Fill in translations for each key — Xcode highlights untranslated strings automatically.
+4. Open `NutritionCounter/InfoPlist.xcstrings` and translate `CFBundleDisplayName` / `CFBundleName` for the new locale.
+5. Add the locale to the project's *Info → Localizations* list in the project editor.
 
 ---
 

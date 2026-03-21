@@ -72,22 +72,30 @@ private struct SmallNutrientRow: View {
                 .foregroundStyle(.primary)
                 .frame(width: 10, alignment: .leading)
 
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule()
-                        .fill(.quaternary)
-                        .frame(height: 5)
-                    Capsule()
-                        .fill(isComplete ? .green : nutrient.color)
-                        .frame(width: geo.size.width * progress, height: 5)
+            if isComplete {
+                Label("Done", systemImage: "checkmark.circle.fill")
+                    .labelStyle(.titleAndIcon)
+                    .font(.caption2.bold())
+                    .foregroundStyle(.green)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Capsule()
+                            .fill(.quaternary)
+                            .frame(height: 5)
+                        Capsule()
+                            .fill(nutrient.color)
+                            .frame(width: geo.size.width * progress, height: 5)
+                    }
                 }
-            }
-            .frame(height: 5)
+                .frame(height: 5)
 
-            Text(value, format: .number.precision(.fractionLength(1)))
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-                .frame(width: 24, alignment: .trailing)
+                Text(value, format: .number.precision(.fractionLength(1)))
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .frame(width: 24, alignment: .trailing)
+            }
         }
     }
 }
@@ -139,27 +147,34 @@ private struct MediumNutrientRow: View {
                 .font(.caption.bold())
                 .frame(width: 48, alignment: .leading)
 
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(.quaternary).frame(height: 6)
-                    Capsule()
-                        .fill(isComplete ? .green : nutrient.color)
-                        .frame(width: geo.size.width * progress, height: 6)
+            if isComplete {
+                Label("Congrats!", systemImage: "trophy.fill")
+                    .font(.caption.bold())
+                    .foregroundStyle(.green)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(.quaternary).frame(height: 6)
+                        Capsule()
+                            .fill(nutrient.color)
+                            .frame(width: geo.size.width * progress, height: 6)
+                    }
                 }
-            }
-            .frame(height: 6)
+                .frame(height: 6)
 
-            Text("\(value, format: .number.precision(.fractionLength(1)))/\(goal, format: .number.precision(.fractionLength(0)))")
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-                .frame(width: 38, alignment: .trailing)
+                Text("\(value, format: .number.precision(.fractionLength(1)))/\(goal, format: .number.precision(.fractionLength(0)))")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .frame(width: 38, alignment: .trailing)
 
-            Button(intent: IncrementNutrientIntent(nutrient: nutrient)) {
-                Image(systemName: isComplete ? "checkmark.circle.fill" : "plus.circle.fill")
-                    .font(.title3)
-                    .foregroundStyle(isComplete ? .green : nutrient.color)
+                Button(intent: IncrementNutrientIntent(nutrient: nutrient)) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title3)
+                        .foregroundStyle(nutrient.color)
+                }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
         }
     }
 }
@@ -219,38 +234,59 @@ private struct LargeNutrientCard: View {
                 Text(nutrient.rawValue)
                     .font(.subheadline.bold())
                 Spacer()
-                if isComplete {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
-                        .font(.subheadline)
-                }
             }
 
             ProgressView(value: progress)
                 .tint(isComplete ? .green : nutrient.color)
 
-            HStack {
-                Button(intent: DecrementNutrientIntent(nutrient: nutrient)) {
-                    Image(systemName: "minus.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(.red.opacity(0.8))
+            if isComplete {
+                HStack(spacing: 10) {
+                    Image(systemName: "trophy.fill")
+                        .font(.title3)
+                        .foregroundStyle(nutrient.color)
+
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text("Congrats! Goal reached")
+                            .font(.caption.bold())
+                            .foregroundStyle(.green)
+                        Text("\(value, format: .number.precision(.fractionLength(1))) / \(goal, format: .number.precision(.fractionLength(1))) servings")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+
+                    Button(intent: DecrementNutrientIntent(nutrient: nutrient)) {
+                        Image(systemName: "minus.circle")
+                            .font(.title3)
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
+            } else {
+                HStack {
+                    Button(intent: DecrementNutrientIntent(nutrient: nutrient)) {
+                        Image(systemName: "minus.circle.fill")
+                            .font(.title2)
+                            .foregroundStyle(.red.opacity(0.8))
+                    }
+                    .buttonStyle(.plain)
 
-                Spacer()
+                    Spacer()
 
-                Text("\(value, format: .number.precision(.fractionLength(1))) / \(goal, format: .number.precision(.fractionLength(1))) servings")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    Text("\(value, format: .number.precision(.fractionLength(1))) / \(goal, format: .number.precision(.fractionLength(1))) servings")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
 
-                Spacer()
+                    Spacer()
 
-                Button(intent: IncrementNutrientIntent(nutrient: nutrient)) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(isComplete ? .green : nutrient.color)
+                    Button(intent: IncrementNutrientIntent(nutrient: nutrient)) {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                            .foregroundStyle(nutrient.color)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
             }
         }
         .padding()
@@ -263,16 +299,19 @@ private struct LargeNutrientCard: View {
     NutritionWidget()
 } timeline: {
     NutritionEntry.placeholder
+    NutritionEntry.allGoalsReached
 }
 
 #Preview("Medium", as: .systemMedium) {
     NutritionWidget()
 } timeline: {
     NutritionEntry.placeholder
+    NutritionEntry.allGoalsReached
 }
 
 #Preview("Large", as: .systemLarge) {
     NutritionWidget()
 } timeline: {
     NutritionEntry.placeholder
+    NutritionEntry.allGoalsReached
 }

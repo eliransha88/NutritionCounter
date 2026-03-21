@@ -10,4 +10,10 @@ struct NutritionEntry: TimelineEntry, Sendable {
         todayLog: WidgetDailyLog(id: UUID(), date: .now, protein: 2.0, carbs: 3.0, fat: 1.5),
         goals: WidgetDailyGoals(protein: 3.0, carbs: 4.0, fat: 2.0)
     )
+
+    static let allGoalsReached = NutritionEntry(
+        date: .now,
+        todayLog: WidgetDailyLog(id: UUID(), date: .now, protein: 3.0, carbs: 4.0, fat: 2.0),
+        goals: WidgetDailyGoals(protein: 3.0, carbs: 4.0, fat: 2.0)
+    )
 }

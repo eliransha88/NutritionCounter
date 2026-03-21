@@ -1,6 +1,6 @@
 import Foundation
 
-struct DailyGoals: Codable {
+struct DailyGoals: Codable, Sendable {
     var protein: Double
     var carbs: Double
     var fat: Double

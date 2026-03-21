@@ -6,11 +6,63 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		49E1EBF22F6EE8D3005B3C30 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E1EBF12F6EE8D3005B3C30 /* WidgetKit.framework */; };
+		49E1EBF42F6EE8D3005B3C30 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E1EBF32F6EE8D3005B3C30 /* SwiftUI.framework */; };
+		49E1EC052F6EE8D4005B3C30 /* NutritionWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 49E1EBEF2F6EE8D3005B3C30 /* NutritionWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49E1EC032F6EE8D4005B3C30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49F5CBB52E4B9C9A00A551AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49E1EBEE2F6EE8D3005B3C30;
+			remoteInfo = NutritionWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		49E1EC0A2F6EE8D4005B3C30 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				49E1EC052F6EE8D4005B3C30 /* NutritionWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		49E1EBEF2F6EE8D3005B3C30 /* NutritionWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NutritionWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		49E1EBF12F6EE8D3005B3C30 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		49E1EBF32F6EE8D3005B3C30 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		49E1EC182F6EE90B005B3C30 /* NutritionWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NutritionWidgetExtension.entitlements; sourceTree = "<group>"; };
 		49F5CBBD2E4B9C9A00A551AE /* NutritionCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutritionCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		49E1EC062F6EE8D4005B3C30 /* Exceptions for "NutritionWidget" folder in "NutritionWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 49E1EBEE2F6EE8D3005B3C30 /* NutritionWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		49E1EBF52F6EE8D3005B3C30 /* NutritionWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				49E1EC062F6EE8D4005B3C30 /* Exceptions for "NutritionWidget" folder in "NutritionWidgetExtension" target */,
+			);
+			path = NutritionWidget;
+			sourceTree = "<group>";
+		};
 		49F5CBBF2E4B9C9A00A551AE /* NutritionCounter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = NutritionCounter;
@@ -19,6 +71,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		49E1EBEC2F6EE8D3005B3C30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49E1EBF42F6EE8D3005B3C30 /* SwiftUI.framework in Frameworks */,
+				49E1EBF22F6EE8D3005B3C30 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49F5CBBA2E4B9C9A00A551AE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -29,10 +90,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49E1EBF02F6EE8D3005B3C30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49E1EBF12F6EE8D3005B3C30 /* WidgetKit.framework */,
+				49E1EBF32F6EE8D3005B3C30 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		49F5CBB42E4B9C9A00A551AE = {
 			isa = PBXGroup;
 			children = (
+				49E1EC182F6EE90B005B3C30 /* NutritionWidgetExtension.entitlements */,
 				49F5CBBF2E4B9C9A00A551AE /* NutritionCounter */,
+				49E1EBF52F6EE8D3005B3C30 /* NutritionWidget */,
+				49E1EBF02F6EE8D3005B3C30 /* Frameworks */,
 				49F5CBBE2E4B9C9A00A551AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				49F5CBBD2E4B9C9A00A551AE /* NutritionCounter.app */,
+				49E1EBEF2F6EE8D3005B3C30 /* NutritionWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +122,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		49E1EBEE2F6EE8D3005B3C30 /* NutritionWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49E1EC072F6EE8D4005B3C30 /* Build configuration list for PBXNativeTarget "NutritionWidgetExtension" */;
+			buildPhases = (
+				49E1EBEB2F6EE8D3005B3C30 /* Sources */,
+				49E1EBEC2F6EE8D3005B3C30 /* Frameworks */,
+				49E1EBED2F6EE8D3005B3C30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				49E1EBF52F6EE8D3005B3C30 /* NutritionWidget */,
+			);
+			name = NutritionWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = NutritionWidgetExtension;
+			productReference = 49E1EBEF2F6EE8D3005B3C30 /* NutritionWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		49F5CBBC2E4B9C9A00A551AE /* NutritionCounter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49F5CBCC2E4B9C9B00A551AE /* Build configuration list for PBXNativeTarget "NutritionCounter" */;
@@ -55,10 +151,12 @@
 				49F5CBB92E4B9C9A00A551AE /* Sources */,
 				49F5CBBA2E4B9C9A00A551AE /* Frameworks */,
 				49F5CBBB2E4B9C9A00A551AE /* Resources */,
+				49E1EC0A2F6EE8D4005B3C30 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				49E1EC042F6EE8D4005B3C30 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				49F5CBBF2E4B9C9A00A551AE /* NutritionCounter */,
@@ -77,9 +175,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					49E1EBEE2F6EE8D3005B3C30 = {
+						CreatedOnToolsVersion = 26.2;
+					};
 					49F5CBBC2E4B9C9A00A551AE = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -100,11 +201,19 @@
 			projectRoot = "";
 			targets = (
 				49F5CBBC2E4B9C9A00A551AE /* NutritionCounter */,
+				49E1EBEE2F6EE8D3005B3C30 /* NutritionWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		49E1EBED2F6EE8D3005B3C30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49F5CBBB2E4B9C9A00A551AE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +224,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		49E1EBEB2F6EE8D3005B3C30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49F5CBB92E4B9C9A00A551AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +240,82 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		49E1EC042F6EE8D4005B3C30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49E1EBEE2F6EE8D3005B3C30 /* NutritionWidgetExtension */;
+			targetProxy = 49E1EC032F6EE8D4005B3C30 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		49E1EC082F6EE8D4005B3C30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NutritionWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 27NF894P9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NutritionWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NutritionWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.fieldservice.NutritionCounter.NutritionWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		49E1EC092F6EE8D4005B3C30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NutritionWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 27NF894P9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NutritionWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NutritionWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.fieldservice.NutritionCounter.NutritionWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		49F5CBCA2E4B9C9B00A551AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -244,82 +435,91 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = NutritionCounter/NutritionCounter.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"NutritionCounter/Preview Content\"";
-				DEVELOPMENT_TEAM = 27NF894P9T;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.fieldservice.NutritionCounter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				XROS_DEPLOYMENT_TARGET = 2.1;
-			};
-			name = Debug;
+			CODE_SIGN_ENTITLEMENTS = NutritionCounter/NutritionCounter.entitlements;
+			CODE_SIGN_STYLE = Automatic;
+			CURRENT_PROJECT_VERSION = 1;
+			DEVELOPMENT_ASSET_PATHS = "\"NutritionCounter/Preview Content\"";
+			DEVELOPMENT_TEAM = 27NF894P9T;
+			ENABLE_PREVIEWS = YES;
+			GENERATE_INFOPLIST_FILE = YES;
+			"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+			"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+			"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+			"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+			"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+			"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+			"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+			"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+			INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+			INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+			IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+			LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+			"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+			MACOSX_DEPLOYMENT_TARGET = 15.1;
+			MARKETING_VERSION = 1.0;
+			PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.fieldservice.NutritionCounter;
+			PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = auto;
+			SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			SUPPORTS_MACCATALYST = NO;
+			SWIFT_EMIT_LOC_STRINGS = YES;
+			SWIFT_VERSION = 5.0;
+			TARGETED_DEVICE_FAMILY = "1,2";
+			XROS_DEPLOYMENT_TARGET = 2.1;
+		};
+		name = Debug;
 		};
 		49F5CBCE2E4B9C9B00A551AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = NutritionCounter/NutritionCounter.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"NutritionCounter/Preview Content\"";
-				DEVELOPMENT_TEAM = 27NF894P9T;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.fieldservice.NutritionCounter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				XROS_DEPLOYMENT_TARGET = 2.1;
-			};
-			name = Release;
+			CODE_SIGN_ENTITLEMENTS = NutritionCounter/NutritionCounter.entitlements;
+			CODE_SIGN_STYLE = Automatic;
+			CURRENT_PROJECT_VERSION = 1;
+			DEVELOPMENT_ASSET_PATHS = "\"NutritionCounter/Preview Content\"";
+			DEVELOPMENT_TEAM = 27NF894P9T;
+			ENABLE_PREVIEWS = YES;
+			GENERATE_INFOPLIST_FILE = YES;
+			"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+			"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+			"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+			"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+			"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+			"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+			"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+			"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+			INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+			INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+			IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+			LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+			"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+			MACOSX_DEPLOYMENT_TARGET = 15.1;
+			MARKETING_VERSION = 1.0;
+			PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.fieldservice.NutritionCounter;
+			PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = auto;
+			SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			SUPPORTS_MACCATALYST = NO;
+			SWIFT_EMIT_LOC_STRINGS = YES;
+			SWIFT_VERSION = 5.0;
+			TARGETED_DEVICE_FAMILY = "1,2";
+			XROS_DEPLOYMENT_TARGET = 2.1;
+		};
+		name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		49E1EC072F6EE8D4005B3C30 /* Build configuration list for PBXNativeTarget "NutritionWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49E1EC082F6EE8D4005B3C30 /* Debug */,
+				49E1EC092F6EE8D4005B3C30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		49F5CBB82E4B9C9A00A551AE /* Build configuration list for PBXProject "NutritionCounter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

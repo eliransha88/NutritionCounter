@@ -1,6 +1,6 @@
 import Foundation
 
-struct DailyLog: Codable, Identifiable, Equatable {
+struct DailyLog: Codable, Identifiable, Equatable, Sendable {
     let id: UUID
     let date: Date
     var protein: Double

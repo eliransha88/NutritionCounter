@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum NutrientType: String, CaseIterable {
+enum NutrientType: String, CaseIterable, Sendable {
     case protein = "Protein"
     case carbs = "Carbs"
     case fat = "Fat"

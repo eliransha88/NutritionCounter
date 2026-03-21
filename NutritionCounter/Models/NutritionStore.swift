@@ -1,13 +1,14 @@
 import Foundation
 import Observation
+import WidgetKit
 
 @MainActor @Observable
-class NutritionStore {
+final class NutritionStore {
     var dailyGoals: DailyGoals = DailyGoals.default
     var weeklyLogs: [DailyLog] = []
 
-    private let goalsKey = "DailyGoals"
-    private let logsKey = "WeeklyLogs"
+    private let storage = UserDefaults(suiteName: AppGroup.suiteName) ?? .standard
+    private let calendar = Calendar.current
 
     init() {
         loadData()
@@ -15,12 +16,12 @@ class NutritionStore {
     }
 
     func loadData() {
-        if let goalsData = UserDefaults.standard.data(forKey: goalsKey),
+        if let goalsData = storage.data(forKey: AppGroup.goalsKey),
            let goals = try? JSONDecoder().decode(DailyGoals.self, from: goalsData) {
             dailyGoals = goals
         }
 
-        if let logsData = UserDefaults.standard.data(forKey: logsKey),
+        if let logsData = storage.data(forKey: AppGroup.logsKey),
            let logs = try? JSONDecoder().decode([DailyLog].self, from: logsData) {
             weeklyLogs = logs
         }
@@ -28,12 +29,14 @@ class NutritionStore {
 
     func saveData() {
         if let goalsData = try? JSONEncoder().encode(dailyGoals) {
-            UserDefaults.standard.set(goalsData, forKey: goalsKey)
+            storage.set(goalsData, forKey: AppGroup.goalsKey)
         }
 
         if let logsData = try? JSONEncoder().encode(weeklyLogs) {
-            UserDefaults.standard.set(logsData, forKey: logsKey)
+            storage.set(logsData, forKey: AppGroup.logsKey)
         }
+
+        WidgetCenter.shared.reloadTimelines(ofKind: AppGroup.widgetKind)
     }
 
     func initializeWeekIfNeeded() {
@@ -105,7 +108,4 @@ class NutritionStore {
         weeklyLogs.map { $0.date }.max() ?? Date.distantPast
     }
 
-    private var calendar: Calendar {
-        Calendar.current
-    }
 }

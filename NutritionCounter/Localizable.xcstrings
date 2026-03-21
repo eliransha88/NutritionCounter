@@ -238,6 +238,24 @@
         }
       }
     },
+    "Language" : {
+      "comment" : "Section header and Picker label for the in-app language selector in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שפה"
+          }
+        }
+      }
+    },
     "No servings logged yet" : {
       "comment" : "Empty-state title in the pie chart area when no nutrients have been tracked today.",
       "extractionState" : "manual",

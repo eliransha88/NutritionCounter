@@ -8,7 +8,7 @@ struct PieChartView: View {
     let proteinGoal: Double
     let carbsGoal: Double
     let fatGoal: Double
-    
+
     private var hasData: Bool { protein + carbs + fat > 0 }
 
     private func value(for nutrient: NutrientType) -> Double {

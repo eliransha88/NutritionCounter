@@ -3,7 +3,6 @@ import SwiftUI
 struct SettingsView: View {
     var store: NutritionStore
     @Environment(\.dismiss) private var dismiss
-
     @State private var proteinGoal: Double
     @State private var carbsGoal: Double
     @State private var fatGoal: Double
@@ -45,9 +44,7 @@ struct SettingsView: View {
                         value: $fatGoal,
                         color: .green
                     )
-                }
 
-                Section {
                     Button("Save Goals") {
                         withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
                             saveGoals()
@@ -58,6 +55,25 @@ struct SettingsView: View {
                     .padding()
                     .background(.blue)
                     .clipShape(.rect(cornerRadius: 10))
+                }
+
+                Section(header: Text("Language")) {
+                    Button {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    } label: {
+                        HStack {
+                            Text("Language")
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            Text(currentLanguageName)
+                                .foregroundStyle(.secondary)
+                            Image(systemName: "chevron.forward")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                 }
 
                 Section {
@@ -79,6 +95,11 @@ struct SettingsView: View {
                 }
             }
         }
+    }
+
+    private var currentLanguageName: String {
+        let code = Bundle.main.preferredLocalizations.first ?? "en"
+        return Locale(identifier: code).localizedString(forLanguageCode: code)?.capitalized ?? code
     }
 
     private func saveGoals() {

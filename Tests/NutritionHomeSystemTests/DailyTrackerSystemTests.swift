@@ -1,18 +1,16 @@
-import KIF
-import XCTest
+import NutritionTestsHelper
 
-/// KIF system tests that drive the full app via the accessibility layer.
+/// KIF system tests that drive the full `DailyTrackerView` via the accessibility layer.
 ///
 /// These tests launch `NutritionCounter` as their host application and interact
 /// with UI elements using their `accessibilityLabel` / `accessibilityIdentifier`
 /// values, making them robust against visual layout changes.
-final class DailyTrackerSystemTests: KIFTestCase {
+final class DailyTrackerSystemTests: SystemTestCase {
 
     // MARK: - Daily Tracker – initial state
 
     func testDailyTrackerView_DisplaysAllNutrientCounters() {
         // GIVEN: The app is launched and the daily tracker is visible
-
         // WHEN: The view finishes loading
 
         // THEN: All three nutrient counter controls are reachable

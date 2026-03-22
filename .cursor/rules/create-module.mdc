@@ -1,0 +1,138 @@
+---
+description: Step-by-step checklist for adding a new feature module to NutritionCounter (Tuist + Cuckoo + KIF).
+globs: Project.swift,Tuist/ProjectDescriptionHelpers/**/*.swift,Modules/**/*.swift,Tests/**/*.swift
+alwaysApply: false
+---
+
+# Adding a New Module — NutritionCounter
+
+Follow every step in order. Replace `<Name>` with the module name (e.g. `Analytics`).
+
+---
+
+## 1. Source files
+
+```
+Modules/<Name>/Sources/   ← all production Swift files
+```
+
+## 2. Framework target — `Tuist/ProjectDescriptionHelpers/Targets/Nutrition<Name>+Target.swift`
+
+```swift
+import ProjectDescription
+
+public extension Target {
+    static var nutrition<Name>: Target {
+        .module(
+            name: "Nutrition<Name>",
+            sources: "Modules/<Name>/Sources/**/*.swift",
+            dependencies: [
+                .target(name: "NutritionCore"),   // add/remove as needed
+            ]
+        )
+    }
+}
+```
+
+## 3. Unit test target — `Tuist/ProjectDescriptionHelpers/Targets/Nutrition<Name>Tests+Target.swift`
+
+```swift
+import ProjectDescription
+
+public extension Target {
+    static var nutrition<Name>Tests: Target {
+        .target(
+            name: "Nutrition<Name>Tests",
+            destinations: .iOS,
+            product: .unitTests,
+            bundleId: "\(ProjectConstants.bundleIdPrefix).Nutrition<Name>Tests",
+            deploymentTargets: ProjectConstants.deploymentTarget,
+            sources: ["Tests/Nutrition<Name>Tests/**/*.swift"],
+            dependencies: [
+                .target(name: "Nutrition<Name>"),
+                .target(name: "NutritionCore"),
+                .package(product: "Cuckoo"),
+            ]
+        )
+    }
+}
+```
+
+## 4. System test target — `Tuist/ProjectDescriptionHelpers/Targets/Nutrition<Name>SystemTests+Target.swift`
+
+```swift
+import ProjectDescription
+
+public extension Target {
+    static var nutrition<Name>SystemTests: Target {
+        .target(
+            name: "Nutrition<Name>SystemTests",
+            destinations: .iOS,
+            product: .unitTests,          // unitTests (not uiTests) — KIF is in-process
+            bundleId: "\(ProjectConstants.bundleIdPrefix).Nutrition<Name>SystemTests",
+            deploymentTargets: ProjectConstants.deploymentTarget,
+            sources: ["Tests/Nutrition<Name>SystemTests/**/*.swift"],
+            dependencies: [
+                .target(name: "NutritionCounter"),      // host app for BUNDLE_LOADER/TEST_HOST
+                .target(name: "NutritionTestsHelper"),  // SystemTestCase + KIF re-export
+                .package(product: "KIF"),
+            ],
+            settings: .settings(base: ["OTHER_LDFLAGS": "$(inherited) -ObjC"])
+        )
+    }
+}
+```
+
+## 5. Test source directories & files
+
+```
+Tests/Nutrition<Name>Tests/
+    <Feature>Tests.swift        ← XCTestCase unit tests (GIVEN/WHEN/THEN)
+    GeneratedMocks.swift        ← placeholder; Cuckoo overwrites at build time
+
+Tests/Nutrition<Name>SystemTests/
+    <Feature>SystemTests.swift  ← final class … : SystemTestCase { tester()… }
+```
+
+- Unit tests: `import Cuckoo` + `@testable import Nutrition<Name>`
+- System tests: `import NutritionTestsHelper` only — gives `SystemTestCase` + full KIF surface
+
+## 6. Cuckoofile.toml — add a module block if Core protocols need mocking
+
+```toml
+[modules.NutritionCoreFor<Name>]
+output = "Tests/Nutrition<Name>Tests/GeneratedMocks.swift"
+testableImports = ["NutritionCore"]
+sources = ["Modules/Core/Sources/**/*.swift"]
+
+[modules.NutritionCoreFor<Name>.options]
+protocolsOnly = true
+```
+
+Also add the new output path to `NutritionCoreTests+Target.swift`'s `outputPaths` list so the single Cuckoo generator run produces all files.
+
+## 7. Project.swift — register all four targets
+
+```swift
+// MARK: - Nutrition<Name> tests
+.nutrition<Name>,
+.nutrition<Name>Tests,
+.nutrition<Name>SystemTests,
+```
+
+## 8. Regenerate
+
+```bash
+tuist generate
+```
+
+---
+
+## Key rules
+
+| Rule | Reason |
+|---|---|
+| `product: .unitTests` for KIF targets | KIF is in-process; `.uiTests` is out-of-process XCUITest |
+| `OTHER_LDFLAGS: -ObjC` on system test targets | Forces Obj-C categories (KIF extensions on UIView, XCTestCase) to load |
+| Inherit `SystemTestCase`, not `KIFTestCase` | `tester` is an Obj-C macro invisible to Swift; `SystemTestCase` provides the Swift wrapper |
+| One Cuckoo generate script (in `NutritionCoreTests`) | Generates all `GeneratedMocks.swift` files in one pass to avoid races |

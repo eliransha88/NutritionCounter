@@ -12,8 +12,8 @@ import Cuckoo
 final class NutritionStoreTests: XCTestCase {
 
     private var sut: NutritionStore!
-    private let testSuiteName       = "com.eliransharabi.NutritionCounterTests"
-    private let widgetTestSuiteName = "com.eliransharabi.NutritionCounterTests.widget"
+    private let testSuiteName       = "com.eliransharabi.NutritionCoreTests"
+    private let widgetTestSuiteName = "com.eliransharabi.NutritionCoreTests.widget"
 
     // MARK: - Lifecycle
 

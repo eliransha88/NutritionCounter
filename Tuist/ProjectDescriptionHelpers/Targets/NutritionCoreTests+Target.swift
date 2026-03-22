@@ -1,15 +1,15 @@
 import ProjectDescription
 
 public extension Target {
-    static var nutritionCounterTests: Target {
+    static var nutritionCoreTests: Target {
         .target(
-            name: "NutritionCounterTests",
+            name: "NutritionCoreTests",
             destinations: .iOS,
             product: .unitTests,
-            bundleId: "\(ProjectConstants.bundleIdPrefix).NutritionCounterTests",
+            bundleId: "\(ProjectConstants.bundleIdPrefix).NutritionCoreTests",
             deploymentTargets: ProjectConstants.deploymentTarget,
-            sources: ["Tests/NutritionCounterTests/**/*.swift"],
-            scripts: [.cuckooGenerate],
+            sources: ["Tests/NutritionCoreTests/**/*.swift"],
+            scripts: [.cuckooGenerateAll],
             dependencies: [
                 .target(name: "NutritionCore"),
                 .package(product: "Cuckoo"),
@@ -24,19 +24,13 @@ private extension TargetScript {
     /// Pre-build script that builds `CuckooGenerator` (once) from the Cuckoo
     /// SPM checkout and then runs it against the `Cuckoofile.toml` at SRCROOT.
     ///
-    /// Cuckoo 2.x notes:
-    /// • The root `Package.swift` declares `CuckooGenerator` as an executable
-    ///   target — it must be built from the **checkout root**, not `Generator/`.
-    /// • The 2.x CLI takes a `Cuckoofile.toml` config file; there are no longer
-    ///   `--testable`, `--output`, or positional-file arguments.
-    /// • `env -i` strips Xcode's `SDKROOT=iPhoneSimulator` so SPM's manifest
-    ///   parser doesn't inherit it when spawning child processes.
-    static var cuckooGenerate: TargetScript {
+    /// Generating all modules in a single pass keeps the three `GeneratedMocks.swift`
+    /// files (Core / Home / UI) in sync whenever Core protocols change.
+    static var cuckooGenerateAll: TargetScript {
         .pre(
             script: #"""
             PACKAGES_DIR="${BUILD_DIR%/Build/*}/SourcePackages"
             CUCKOO_CHECKOUT="${PACKAGES_DIR}/checkouts/Cuckoo"
-            # Cuckoo 2.x: binary is built from the checkout root, not Generator/
             GENERATOR="${CUCKOO_CHECKOUT}/.build/release/CuckooGenerator"
 
             # ── Guard: packages not yet resolved ──────────────────────────────
@@ -47,8 +41,6 @@ private extension TargetScript {
             fi
 
             # ── Build generator the first time (one-time, ~2 min) ─────────────
-            # cd to the CHECKOUT ROOT — that is where Package.swift lives in 2.x.
-            # env -i strips SDKROOT so SPM sub-processes don't inherit the iOS SDK.
             if [ ! -f "$GENERATOR" ]; then
                 echo "note: Building CuckooGenerator from source (first-time setup)…"
                 cd "$CUCKOO_CHECKOUT"
@@ -63,18 +55,19 @@ private extension TargetScript {
                 fi
             fi
 
-            # ── Run the generator using Cuckoofile.toml ────────────────────────
+            # ── Run the generator — produces mocks for all modules ─────────────
             cd "${SRCROOT}"
             "$GENERATOR" --configuration "${SRCROOT}/Cuckoofile.toml"
             """#,
-            name: "Generate Cuckoo Mocks",
+            name: "Generate Cuckoo Mocks (all modules)",
             inputPaths: [
-                // Whole Core Sources directory — any new protocol file triggers a re-run
                 "$(SRCROOT)/Modules/Core/Sources",
                 "$(SRCROOT)/Cuckoofile.toml",
             ],
             outputPaths: [
-                "$(SRCROOT)/Tests/NutritionCounterTests/GeneratedMocks.swift",
+                "$(SRCROOT)/Tests/NutritionCoreTests/GeneratedMocks.swift",
+                "$(SRCROOT)/Tests/NutritionHomeTests/GeneratedMocks.swift",
+                "$(SRCROOT)/Tests/NutritionAnalyticsTests/GeneratedMocks.swift",
             ],
             basedOnDependencyAnalysis: true
         )

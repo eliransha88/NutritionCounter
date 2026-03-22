@@ -3,7 +3,7 @@ import NutritionCore
 import NutritionHome
 
 struct ContentView: View {
-    var store: NutritionStore
+    var store: any NutritionStoreProtocol
 
     var body: some View {
         DailyTrackerView(store: store)

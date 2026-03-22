@@ -1,0 +1,24 @@
+{
+  "originHash" : "42b5d06123593bd4d553d99b930a56e7463a08a8565933c7769758bdc9dc26c8",
+  "pins" : [
+    {
+      "identity" : "cuckoo",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Brightify/Cuckoo",
+      "state" : {
+        "revision" : "0cfbb729d0aced6494c19c58c0c31ea16d1cbf66",
+        "version" : "1.10.4"
+      }
+    },
+    {
+      "identity" : "kif",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kif-framework/KIF",
+      "state" : {
+        "revision" : "0e29a2a82966ea71727d9f6cea1ee6e054d6e824",
+        "version" : "3.12.3"
+      }
+    }
+  ],
+  "version" : 3
+}

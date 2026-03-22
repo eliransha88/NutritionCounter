@@ -1,0 +1,16 @@
+# Cuckoo 2.x configuration
+# https://github.com/Brightify/Cuckoo
+#
+# Sources glob covers all Swift files under Modules/Core/Sources/.
+# Add new protocols there and they are automatically picked up — no edits needed here.
+
+[modules.NutritionCore]
+output = "Tests/NutritionCounterTests/GeneratedMocks.swift"
+testableImports = ["NutritionCore"]
+sources = [
+    "Modules/Core/Sources/**/*.swift",
+]
+
+[modules.NutritionCore.options]
+# Only generate mocks for protocols — skips concrete types (NutritionStore, DailyLog, etc.)
+protocolsOnly = true

@@ -3,10 +3,10 @@ import NutritionCore
 import NutritionUI
 
 public struct DailyTrackerView: View {
-    public var store: NutritionStore
+    public var store: any NutritionStoreProtocol
     @State private var showingSettings = false
 
-    public init(store: NutritionStore) {
+    public init(store: any NutritionStoreProtocol) {
         self.store = store
     }
 

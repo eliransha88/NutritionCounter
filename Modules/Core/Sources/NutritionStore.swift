@@ -1,25 +1,37 @@
 import Foundation
 import Observation
 import OSLog
-import WidgetKit
 
 @MainActor @Observable
-public final class NutritionStore {
+public final class NutritionStore: NutritionStoreProtocol {
     public var dailyGoals: DailyGoals = DailyGoals.default
     public var weeklyLogs: [DailyLog] = []
 
-    private let storage  = UserDefaults(suiteName: AppGroup.suiteName) ?? .standard
-    private let calendar = Calendar.current
-    private let logger   = Logger(subsystem: "com.eliransharabi.NutritionCounter", category: "NutritionStore")
+    private let storage:       UserDefaults
+    private let widgetReloader: WidgetReloaderProtocol
+    private let calendar      = Calendar.current
+    private let logger        = Logger(subsystem: "com.eliransharabi.NutritionCounter", category: "NutritionStore")
 
-    public init() {
+    /// Creates a store backed by the given `UserDefaults` suite and widget reloader.
+    ///
+    /// - Parameters:
+    ///   - storageSuiteName: The `UserDefaults` suite to use. Defaults to the shared
+    ///     App Group suite; pass a unique name in tests to achieve storage isolation.
+    ///   - widgetReloader: Controls how widget timelines are refreshed after a save.
+    ///     Defaults to `LiveWidgetReloader`; pass `NoOpWidgetReloader()` in tests.
+    public init(
+        storageSuiteName: String = AppGroup.suiteName,
+        widgetReloader: WidgetReloaderProtocol = LiveWidgetReloader()
+    ) {
+        self.storage       = UserDefaults(suiteName: storageSuiteName) ?? .standard
+        self.widgetReloader = widgetReloader
         loadData()
         initializeWeekIfNeeded()
     }
 
     public func loadData() {
-        if let data   = storage.data(forKey: AppGroup.goalsKey),
-           let goals  = try? JSONDecoder().decode(DailyGoals.self, from: data) {
+        if let data  = storage.data(forKey: AppGroup.goalsKey),
+           let goals = try? JSONDecoder().decode(DailyGoals.self, from: data) {
             dailyGoals = goals
         }
         if let data = storage.data(forKey: AppGroup.logsKey),
@@ -35,7 +47,7 @@ public final class NutritionStore {
         do { storage.set(try JSONEncoder().encode(weeklyLogs), forKey: AppGroup.logsKey) }
         catch { logger.error("Failed to encode weeklyLogs: \(error)") }
 
-        WidgetCenter.shared.reloadTimelines(ofKind: AppGroup.widgetKind)
+        widgetReloader.reloadTimelines(ofKind: AppGroup.widgetKind)
     }
 
     public func initializeWeekIfNeeded() {

@@ -3,9 +3,9 @@ import NutritionCore
 import NutritionUI
 
 public struct DailyCountersView: View {
-    public var store: NutritionStore
+    public var store: any NutritionStoreProtocol
 
-    public init(store: NutritionStore) {
+    public init(store: any NutritionStoreProtocol) {
         self.store = store
     }
 

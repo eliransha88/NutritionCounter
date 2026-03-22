@@ -3,13 +3,13 @@ import NutritionCore
 import NutritionUI
 
 public struct SettingsView: View {
-    public var store: NutritionStore
+    public var store: any NutritionStoreProtocol
     @Environment(\.dismiss) private var dismiss
     @State private var proteinGoal: Double
     @State private var carbsGoal: Double
     @State private var fatGoal: Double
 
-    public init(store: NutritionStore) {
+    public init(store: any NutritionStoreProtocol) {
         self.store = store
         self._proteinGoal = State(initialValue: store.dailyGoals.protein)
         self._carbsGoal = State(initialValue: store.dailyGoals.carbs)

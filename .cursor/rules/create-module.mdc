@@ -163,7 +163,7 @@ tuist generate
 | Use the Tuist-generated enum (`Text(Nutrition<Name>Strings.myKey)`) | Compile-time safety; avoids runtime key typos |
 | Never duplicate a key that already lives in a dependency's strings | Static frameworks merge their bundles into the host — duplicates cause conflicts |
 | Never add a key to the main app's strings that belongs to a module | The main app catalog is for app-level-only strings |
-| The widget (`NutritionAppWidget`) keeps its own `Localizable.xcstrings` | Widget extensions are a separate target with their own bundle |
+| The widget (`NutritionAppWidget`) keeps its own `Resources/Localizable.xcstrings` | Widget extensions are a separate target with their own bundle |
 
 ### Using strings from a dependency
 

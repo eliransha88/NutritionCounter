@@ -28,13 +28,8 @@ public extension Target {
                     "UIInterfaceOrientationLandscapeRight",
                 ],
             ]),
-            sources: ["NutritionCounter/**/*.swift"],
-            resources: [
-                "NutritionCounter/Assets.xcassets",
-                "NutritionCounter/Localizable.xcstrings",
-                "NutritionCounter/InfoPlist.xcstrings",
-                "NutritionCounter/PrivacyInfo.xcprivacy",
-            ],
+            sources: ["NutritionCounter/Sources/**/*.swift"],
+            resources: ["NutritionCounter/Resources/**"],
             entitlements: .file(path: "NutritionCounter/NutritionCounter.entitlements"),
             dependencies: [
                 .target(name: "NutritionAppWidget"),

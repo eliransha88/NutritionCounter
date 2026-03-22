@@ -21,7 +21,11 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum NutritionCounterAsset: Sendable {
+  public enum Assets {
   public static let accentColor = NutritionCounterColors(name: "AccentColor")
+  }
+  public enum PreviewAssets {
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

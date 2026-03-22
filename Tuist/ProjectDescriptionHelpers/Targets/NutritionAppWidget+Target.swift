@@ -15,13 +15,9 @@ public extension Target {
                 ],
                 "NSHumanReadableCopyright": "",
             ]),
-            sources: ["NutritionAppWidget/**/*.swift"],
-            resources: [
-                "NutritionAppWidget/Assets.xcassets",
-                "NutritionAppWidget/Localizable.xcstrings",
-                "NutritionAppWidget/PrivacyInfo.xcprivacy",
-            ],
-            entitlements: .file(path: "NutritionAppWidget.entitlements"),
+            sources: ["NutritionAppWidget/Sources/**/*.swift"],
+            resources: ["NutritionAppWidget/Resources/**"],
+            entitlements: .file(path: "NutritionAppWidget/NutritionAppWidget.entitlements"),
             dependencies: [
                 .target(name: "NutritionCore"),
             ],

@@ -22,6 +22,6 @@ SWIFT_EMIT_LOC_STRINGS = YES
 
 // MARK: - Previews
 ENABLE_PREVIEWS = YES
-DEVELOPMENT_ASSET_PATHS = "NutritionCounter/Preview Content"
+DEVELOPMENT_ASSET_PATHS = "NutritionCounter/Resources/Preview Content"
 
 // Note: CODE_SIGN_ENTITLEMENTS is set per-target by Tuist via the entitlements: parameter.

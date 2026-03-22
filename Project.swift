@@ -11,7 +11,19 @@ let project = Project(
         .nutritionHome,
         .nutritionCounter,
         .nutritionAppWidget,
-        .nutritionCounterTests,
-        .nutritionCounterSystemTests,
+        .nutritionTestsHelper,
+
+        // MARK: - NutritionCore tests
+        .nutritionCoreTests,
+        .nutritionCoreSystemTests,
+
+        // MARK: - NutritionUI tests
+        .nutritionUITests,
+        .nutritionUISystemTests,
+
+        // MARK: - NutritionHome tests
+        .nutritionHomeTests,
+        .nutritionHomeSystemTests,
+
     ]
 )

@@ -21,8 +21,8 @@ public struct WeeklyChartView: View {
                 ForEach(weeklyLogs) { log in
                     LineMark(
                         x: .value("Day", dayString(from: log.date)),
-                        y: .value(config.type.rawValue, getNutrientValue(for: config.type, from: log)),
-                        series: .value("", config.type.rawValue)
+                        y: .value(config.type.localizedName, getNutrientValue(for: config.type, from: log)),
+                        series: .value("", config.type.localizedName)
                     )
                     .foregroundStyle(config.color)
                     .symbol(config.symbol)
@@ -31,7 +31,7 @@ public struct WeeklyChartView: View {
             }
         }
         .chartLegend(position: .bottom)
-        .accessibilityLabel("Weekly nutrient intake chart showing protein, carbs, and fat servings for each day of the week")
+        .accessibilityLabel(NutritionUIStrings.weeklyNutrientIntakeChartShowingProteinCarbsAndFatServingsForEachDayOfTheWeek)
         .chartXAxis {
             AxisMarks { _ in
                 AxisValueLabel()

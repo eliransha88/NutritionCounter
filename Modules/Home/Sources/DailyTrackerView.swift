@@ -21,12 +21,14 @@ public struct DailyTrackerView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Nutrition Tracker")
+            .navigationTitle(NutritionHomeStrings.nutritionTracker)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button("Settings", systemImage: "gear") {
+                    Button {
                         showingSettings = true
+                    } label: {
+                        Label(NutritionHomeStrings.settings, systemImage: "gear")
                     }
                     .labelStyle(.iconOnly)
                 }

@@ -1,0 +1,26 @@
+/* Message shown inside a counter card when the daily goal for that nutrient has been met. */
+"Congrats! Goal reached" = "Congrats! Goal reached";
+
+/* Sidebar header in the pie chart area showing today's nutrient totals. */
+"Daily Totals" = "Daily Totals";
+
+/* VoiceOver label for the button that decreases a nutrient's serving count. %@ is the nutrient name. */
+"Decrease %@" = "Decrease %1$@";
+
+/* VoiceOver label for the button that decreases a nutrient's daily goal in Settings. %@ is the nutrient name. */
+"Decrease %@ goal" = "Decrease %1$@ goal";
+
+/* VoiceOver label for the button that increases a nutrient's serving count. %@ is the nutrient name. */
+"Increase %@" = "Increase %1$@";
+
+/* VoiceOver label for the button that increases a nutrient's daily goal in Settings. %@ is the nutrient name. */
+"Increase %@ goal" = "Increase %1$@ goal";
+
+/* Empty-state title in the pie chart area when no nutrients have been tracked today. */
+"No servings logged yet" = "No servings logged yet";
+
+/* Empty-state description below the pie chart, prompting the user to log their first serving. */
+"Tap + on a nutrient below to start tracking" = "Tap + on a nutrient below to start tracking";
+
+/* VoiceOver label for the weekly line chart. */
+"Weekly nutrient intake chart showing protein, carbs, and fat servings for each day of the week" = "Weekly nutrient intake chart showing protein, carbs, and fat servings for each day of the week";

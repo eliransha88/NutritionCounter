@@ -1,0 +1,8 @@
+/* Dietary protein — a macronutrient tracked in the app. */
+"Protein" = "Protein";
+
+/* Short name for carbohydrates — used in settings, charts, and counter rows. */
+"Carbs" = "Carbs";
+
+/* Dietary fat — a macronutrient tracked in the app. */
+"Fat" = "Fat";

@@ -1,0 +1,26 @@
+/* Toolbar button that dismisses the Settings sheet without saving. */
+"Cancel" = "Cancel";
+
+/* Section header and navigation title for the settings screen. */
+"Daily Goals" = "Daily Goals";
+
+/* Section header and Picker label for the in-app language selector in Settings. */
+"Language" = "Language";
+
+/* Main navigation title shown at the top of the daily tracker view. */
+"Nutrition Tracker" = "Nutrition Tracker";
+
+/* Button that persists the updated daily nutrition goals and closes the settings sheet. */
+"Save Goals" = "Save Goals";
+
+/* Caption in the settings form explaining the purpose of the goal fields. */
+"Set your daily target servings for each macronutrient" = "Set your daily target servings for each macronutrient";
+
+/* Accessibility label for the icon-only gear button that opens the settings sheet. */
+"Settings" = "Settings";
+
+/* App version footer in Settings. First %@ is the marketing version, second %@ is the build number. */
+"Version %@ (%@)" = "Version %1$@ (%2$@)";
+
+/* Section header above the 7-day nutrient trend chart. */
+"Weekly Overview" = "Weekly Overview";

@@ -5,6 +5,7 @@ public extension Target {
         .module(
             name: "NutritionHome",
             sources: "Modules/Home/Sources/**/*.swift",
+            resources: ["Modules/Home/Resources/**"],
             dependencies: [
                 .target(name: "NutritionCore"),
                 .target(name: "NutritionUI"),

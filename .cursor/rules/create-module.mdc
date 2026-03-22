@@ -10,11 +10,34 @@ Follow every step in order. Replace `<Name>` with the module name (e.g. `Analyti
 
 ---
 
-## 1. Source files
+## 1. Source & Resources directories
 
 ```
-Modules/<Name>/Sources/   ← all production Swift files
+Modules/<Name>/Sources/             ← all production Swift files
+Modules/<Name>/Resources/           ← module-level resources
+Modules/<Name>/Resources/en.lproj/Localizable.strings  ← English strings
+Modules/<Name>/Resources/he.lproj/Localizable.strings  ← Hebrew strings
 ```
+
+Seed both `.strings` files with the same keys. English values match the key; Hebrew
+values are the translated text:
+
+```
+/* Description of the string. */
+"My Key" = "My Key";
+```
+
+```
+/* Description of the string. */
+"My Key" = "המפתח שלי";
+```
+
+After running `tuist generate`, Tuist auto-generates
+`Derived/Sources/TuistStrings+Nutrition<Name>.swift` containing a
+`Nutrition<Name>Strings` enum with typed `String` properties for every key.
+
+Add string keys only for literals used directly within `Modules/<Name>/Sources/`.
+Never duplicate a key that already lives in another module's strings.
 
 ## 2. Framework target — `Tuist/ProjectDescriptionHelpers/Targets/Nutrition<Name>+Target.swift`
 
@@ -26,6 +49,7 @@ public extension Target {
         .module(
             name: "Nutrition<Name>",
             sources: "Modules/<Name>/Sources/**/*.swift",
+            resources: ["Modules/<Name>/Resources/**"],
             dependencies: [
                 .target(name: "NutritionCore"),   // add/remove as needed
             ]
@@ -33,6 +57,10 @@ public extension Target {
     }
 }
 ```
+
+> The `resources:` glob picks up every `.lproj` folder. Tuist auto-generates
+> `Derived/Sources/TuistStrings+Nutrition<Name>.swift` with a
+> `Nutrition<Name>Strings` enum — use it as `Text(Nutrition<Name>Strings.myKey)`.
 
 ## 3. Unit test target — `Tuist/ProjectDescriptionHelpers/Targets/Nutrition<Name>Tests+Target.swift`
 
@@ -128,6 +156,59 @@ tuist generate
 
 ---
 
+## Localization rules
+
+| Rule | Reason |
+|---|---|
+| Each module owns the strings used in its `Sources/` | Prevents duplicate keys across bundles |
+| Use the Tuist-generated enum (`Text(Nutrition<Name>Strings.myKey)`) | Compile-time safety; avoids runtime key typos |
+| Never duplicate a key that already lives in a dependency's strings | Static frameworks merge their bundles into the host — duplicates cause conflicts |
+| Never add a key to the main app's strings that belongs to a module | The main app catalog is for app-level-only strings |
+| The widget (`NutritionAppWidget`) keeps its own `Localizable.xcstrings` | Widget extensions are a separate target with their own bundle |
+
+### Using strings from a dependency
+
+Each Tuist-generated enum (e.g. `NutritionCoreStrings`) is `public`, so any module
+that depends on it can reference its properties directly:
+
+```swift
+// In NutritionHome (which depends on NutritionCore):
+Text(NutritionCoreStrings.protein)
+```
+
+**Example — domain-level strings in NutritionCore:**
+
+```swift
+// NutrientType.swift — uses Tuist-generated NutritionCoreStrings enum.
+public var localizedName: String {
+    switch self {
+    case .protein: NutritionCoreStrings.protein
+    case .carbs:   NutritionCoreStrings.carbs
+    case .fat:     NutritionCoreStrings.fat
+    }
+}
+```
+
+When deciding where a new string key belongs, ask:
+> "Which is the deepest dependency that every consumer of this string already depends on?"
+
+Put the key there. Prefer `NutritionCore` for domain concepts (nutrient names, unit labels)
+and module-specific strings for UI copy (error messages, button titles, accessibility labels).
+
+### Format strings
+
+For strings with arguments (e.g. `"Decrease %@"`), Tuist generates a function:
+
+```swift
+// In Localizable.strings:
+// "Decrease %@" = "Decrease %1$@";
+//
+// Generated:
+// public static func decrease(_ p1: Any) -> String
+
+Text(NutritionUIStrings.decrease(nutrient.localizedName))
+```
+
 ## Key rules
 
 | Rule | Reason |
@@ -136,3 +217,5 @@ tuist generate
 | `OTHER_LDFLAGS: -ObjC` on system test targets | Forces Obj-C categories (KIF extensions on UIView, XCTestCase) to load |
 | Inherit `SystemTestCase`, not `KIFTestCase` | `tester` is an Obj-C macro invisible to Swift; `SystemTestCase` provides the Swift wrapper |
 | One Cuckoo generate script (in `NutritionCoreTests`) | Generates all `GeneratedMocks.swift` files in one pass to avoid races |
+
+Consider these rules if they affect your changes.

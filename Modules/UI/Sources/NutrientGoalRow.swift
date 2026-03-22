@@ -1,4 +1,5 @@
 import SwiftUI
+import NutritionCore
 
 public struct NutrientGoalRow: View {
     public let title: String
@@ -13,7 +14,7 @@ public struct NutrientGoalRow: View {
 
     public var body: some View {
         HStack {
-            Text(LocalizedStringKey(title))
+            Text(title)
                 .foregroundStyle(.primary)
                 .font(.body)
                 .transition(.opacity.combined(with: .move(edge: .leading)))
@@ -21,24 +22,32 @@ public struct NutrientGoalRow: View {
             Spacer()
 
             HStack(spacing: 16) {
-                Button("Decrease \(title) goal", systemImage: "minus.circle.fill", action: decrementValue)
-                    .font(.title2)
-                    .foregroundStyle(.red)
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.plain)
-                    .contentShape(Rectangle())
+                Button {
+                    decrementValue()
+                } label: {
+                    Label(NutritionUIStrings.decreaseGoal(title), systemImage: "minus.circle.fill")
+                }
+                .font(.title2)
+                .foregroundStyle(.red)
+                .labelStyle(.iconOnly)
+                .buttonStyle(.plain)
+                .contentShape(Rectangle())
 
                 Text(value, format: .number.precision(.fractionLength(1)))
                     .font(.headline)
                     .foregroundStyle(color)
                     .frame(minWidth: 50)
 
-                Button("Increase \(title) goal", systemImage: "plus.circle.fill", action: incrementValue)
-                    .font(.title2)
-                    .foregroundStyle(.green)
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.plain)
-                    .contentShape(Rectangle())
+                Button {
+                    incrementValue()
+                } label: {
+                    Label(NutritionUIStrings.increaseGoal(title), systemImage: "plus.circle.fill")
+                }
+                .font(.title2)
+                .foregroundStyle(.green)
+                .labelStyle(.iconOnly)
+                .buttonStyle(.plain)
+                .contentShape(Rectangle())
             }
         }
         .padding(.vertical, 4)
@@ -59,6 +68,6 @@ public struct NutrientGoalRow: View {
 }
 
 #Preview {
-    NutrientGoalRow(title: "Protein", value: .constant(3.0), color: .blue)
+    NutrientGoalRow(title: NutritionCoreStrings.protein, value: .constant(3.0), color: .blue)
         .padding()
 }

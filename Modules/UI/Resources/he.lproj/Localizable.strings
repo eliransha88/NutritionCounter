@@ -1,0 +1,26 @@
+/* Message shown inside a counter card when the daily goal for that nutrient has been met. */
+"Congrats! Goal reached" = "כל הכבוד! יעד הושג";
+
+/* Sidebar header in the pie chart area showing today's nutrient totals. */
+"Daily Totals" = "סה\"כ יומי";
+
+/* VoiceOver label for the button that decreases a nutrient's serving count. %@ is the nutrient name. */
+"Decrease %@" = "הפחת %1$@";
+
+/* VoiceOver label for the button that decreases a nutrient's daily goal in Settings. %@ is the nutrient name. */
+"Decrease %@ goal" = "הפחת יעד %1$@";
+
+/* VoiceOver label for the button that increases a nutrient's serving count. %@ is the nutrient name. */
+"Increase %@" = "הגדל %1$@";
+
+/* VoiceOver label for the button that increases a nutrient's daily goal in Settings. %@ is the nutrient name. */
+"Increase %@ goal" = "הגדל יעד %1$@";
+
+/* Empty-state title in the pie chart area when no nutrients have been tracked today. */
+"No servings logged yet" = "עדיין לא נרשמו מנות";
+
+/* Empty-state description below the pie chart, prompting the user to log their first serving. */
+"Tap + on a nutrient below to start tracking" = "הקש + על רכיב תזונתי כדי להתחיל לעקוב";
+
+/* VoiceOver label for the weekly line chart. */
+"Weekly nutrient intake chart showing protein, carbs, and fat servings for each day of the week" = "גרף שבועי של צריכת רכיבי תזונה המציג מנות חלבון, פחמימות ושומן לכל יום בשבוע";

@@ -37,9 +37,9 @@ public struct PieChartView: View {
             chartContent
         } else {
             ContentUnavailableView(
-                "No servings logged yet",
+                NutritionUIStrings.noServingsLoggedYet,
                 systemImage: "fork.knife",
-                description: Text("Tap + on a nutrient below to start tracking")
+                description: Text(NutritionUIStrings.tapOnANutrientBelowToStartTracking)
             )
         }
     }
@@ -77,15 +77,15 @@ public struct PieChartView: View {
                 HStack(spacing: 16) {
                     HStack(spacing: 4) {
                         Circle().fill(.blue).frame(width: 8, height: 8)
-                        Text("Protein").font(.caption)
+                        Text(NutritionCoreStrings.protein).font(.caption)
                     }
                     HStack(spacing: 4) {
                         Circle().fill(.orange).frame(width: 8, height: 8)
-                        Text("Carbs").font(.caption)
+                        Text(NutritionCoreStrings.carbs).font(.caption)
                     }
                     HStack(spacing: 4) {
                         Circle().fill(.green).frame(width: 8, height: 8)
-                        Text("Fat").font(.caption)
+                        Text(NutritionCoreStrings.fat).font(.caption)
                     }
                 }
             }
@@ -98,7 +98,7 @@ Fat \(fat, format: .number.precision(.fractionLength(1))) servings
             )
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("Daily Totals")
+                Text(NutritionUIStrings.dailyTotals)
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
@@ -108,7 +108,7 @@ Fat \(fat, format: .number.precision(.fractionLength(1))) servings
                             Text(nutrient.localizedAbbreviation)
                                 .font(.caption)
                                 .foregroundStyle(nutrient.color)
-                                .accessibilityLabel(Text(nutrient.localizedName))
+                                .accessibilityLabel(nutrient.localizedName)
                             Text(value(for: nutrient), format: .number.precision(.fractionLength(1)))
                                 .font(.caption)
                                 .fontWeight(.semibold)

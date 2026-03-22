@@ -55,9 +55,24 @@ subst() {
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 1. Source directory + placeholder
+# 1. Source + Resources directories, placeholders
 # ─────────────────────────────────────────────────────────────────────────────
 mkdir -p "$ROOT/Modules/$NAME/Sources"
+mkdir -p "$ROOT/Modules/$NAME/Resources/en.lproj"
+mkdir -p "$ROOT/Modules/$NAME/Resources/he.lproj"
+
+# Seed Localizable.strings (same keys in both locales). After `tuist generate`, Tuist
+# emits Derived/Sources/TuistStrings+<Module>.swift with a public <Module>Strings enum.
+cat > "$ROOT/Modules/$NAME/Resources/en.lproj/Localizable.strings" << 'STRINGS'
+/* Replace with real keys used in Modules/__NAME__/Sources/. Run tuist generate after edits. */
+"My Key" = "My Key";
+STRINGS
+subst "$ROOT/Modules/$NAME/Resources/en.lproj/Localizable.strings"
+
+cat > "$ROOT/Modules/$NAME/Resources/he.lproj/Localizable.strings" << 'STRINGS'
+/* Hebrew — same keys as en.lproj/Localizable.strings */
+"My Key" = "המפתח שלי";
+STRINGS
 
 cat > "$ROOT/Modules/$NAME/Sources/${NAME}Module.swift" << 'SWIFT'
 import Foundation
@@ -77,6 +92,7 @@ public extension Target {
         .module(
             name: "__TYPE__",
             sources: "Modules/__NAME__/Sources/**/*.swift",
+            resources: ["Modules/__NAME__/Resources/**"],
             dependencies: [
                 .target(name: "NutritionCore"),
             ]
@@ -281,6 +297,8 @@ PYEOF
 # ─────────────────────────────────────────────────────────────────────────────
 echo ""
 echo "  ✓  Modules/${NAME}/Sources/${NAME}Module.swift"
+echo "  ✓  Modules/${NAME}/Resources/en.lproj/Localizable.strings"
+echo "  ✓  Modules/${NAME}/Resources/he.lproj/Localizable.strings"
 echo "  ✓  Tuist/ProjectDescriptionHelpers/Targets/${TYPE}+Target.swift"
 echo "  ✓  Tuist/ProjectDescriptionHelpers/Targets/${TYPE}Tests+Target.swift"
 echo "  ✓  Tuist/ProjectDescriptionHelpers/Targets/${TYPE}SystemTests+Target.swift"
@@ -299,5 +317,7 @@ fi
 
 echo ""
 echo "  ✅  ${TYPE} is ready."
-echo "      Next: fill in Modules/${NAME}/Sources/ and flesh out the test placeholders."
+echo "      Next: fill in Modules/${NAME}/Sources/, replace the sample keys in"
+echo "            Resources/en.lproj & he.lproj/Localizable.strings, run tuist generate"
+echo "            (refreshes Derived/Sources/TuistStrings+${TYPE}.swift), and flesh out tests."
 echo ""

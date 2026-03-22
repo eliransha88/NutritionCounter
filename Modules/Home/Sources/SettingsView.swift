@@ -19,9 +19,9 @@ public struct SettingsView: View {
     public var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("Daily Goals")) {
+                Section(header: Text(NutritionHomeStrings.dailyGoals)) {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Set your daily target servings for each macronutrient")
+                        Text(NutritionHomeStrings.setYourDailyTargetServingsForEachMacronutrient)
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -29,11 +29,11 @@ public struct SettingsView: View {
                 }
 
                 Section {
-                    NutrientGoalRow(title: "Protein", value: $proteinGoal, color: .blue)
-                    NutrientGoalRow(title: "Carbs",   value: $carbsGoal,   color: .orange)
-                    NutrientGoalRow(title: "Fat",     value: $fatGoal,     color: .green)
+                    NutrientGoalRow(title: NutritionCoreStrings.protein, value: $proteinGoal, color: .blue)
+                    NutrientGoalRow(title: NutritionCoreStrings.carbs,   value: $carbsGoal,   color: .orange)
+                    NutrientGoalRow(title: NutritionCoreStrings.fat,     value: $fatGoal,     color: .green)
 
-                    Button("Save Goals") {
+                    Button(NutritionHomeStrings.saveGoals) {
                         withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
                             saveGoals()
                         }
@@ -45,14 +45,14 @@ public struct SettingsView: View {
                     .clipShape(.rect(cornerRadius: 10))
                 }
 
-                Section(header: Text("Language")) {
+                Section(header: Text(NutritionHomeStrings.language)) {
                     Button {
                         if let url = URL(string: UIApplication.openSettingsURLString) {
                             UIApplication.shared.open(url)
                         }
                     } label: {
                         HStack {
-                            Text("Language")
+                            Text(NutritionHomeStrings.language)
                                 .foregroundStyle(.primary)
                             Spacer()
                             Text(currentLanguageName)
@@ -67,17 +67,17 @@ public struct SettingsView: View {
                 Section {
                     let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "–"
                     let build   = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "–"
-                    Text("Version \(version) (\(build))")
+                    Text(NutritionHomeStrings.version(version, build))
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
-            .navigationTitle("Daily Goals")
+            .navigationTitle(NutritionHomeStrings.dailyGoals)
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") { dismiss() }
+                    Button(NutritionHomeStrings.cancel) { dismiss() }
                 }
             }
         }

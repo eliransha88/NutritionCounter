@@ -57,7 +57,7 @@ public struct NutrientCounterView: View {
                     .font(.headline)
                     .foregroundStyle(.primary)
 
-                Text("Congrats! Goal reached")
+                Text(NutritionUIStrings.congratsGoalReached)
                     .font(.subheadline.bold())
                     .foregroundStyle(.green)
 
@@ -70,8 +70,10 @@ public struct NutrientCounterView: View {
 
             Spacer()
 
-            Button("Decrease \(nutrient.rawValue)", systemImage: "minus.circle") {
+            Button {
                 onDecrement()
+            } label: {
+                Label(NutritionUIStrings.decrease(nutrient.localizedName), systemImage: "minus.circle")
             }
             .font(.title2)
             .foregroundStyle(.secondary)
@@ -79,7 +81,7 @@ public struct NutrientCounterView: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(Text(verbatim:
-            "\(nutrient.rawValue): goal reached. " +
+            "\(nutrient.localizedName): goal reached. " +
             "\(value.formatted(.number.precision(.fractionLength(1)))) of " +
             "\(goal.formatted(.number.precision(.fractionLength(1)))) servings."
         ))
@@ -110,9 +112,11 @@ public struct NutrientCounterView: View {
             Spacer()
 
             HStack(spacing: 12) {
-                Button("Decrease \(nutrient.rawValue)", systemImage: "minus.circle.fill") {
+                Button {
                     animateValueChange()
                     onDecrement()
+                } label: {
+                    Label(NutritionUIStrings.decrease(nutrient.localizedName), systemImage: "minus.circle.fill")
                 }
                 .font(.title2)
                 .foregroundStyle(.red)
@@ -123,9 +127,11 @@ public struct NutrientCounterView: View {
                     isPressed = pressing
                 }, perform: {})
 
-                Button("Increase \(nutrient.rawValue)", systemImage: "plus.circle.fill") {
+                Button {
                     animateValueChange()
                     onIncrement()
+                } label: {
+                    Label(NutritionUIStrings.increase(nutrient.localizedName), systemImage: "plus.circle.fill")
                 }
                 .font(.title2)
                 .foregroundStyle(.green)

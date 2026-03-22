@@ -26,7 +26,7 @@ private struct SmallWidgetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label("Nutrition", systemImage: "fork.knife")
+            Label(.nutrition, systemImage: "fork.knife")
                 .font(.caption.bold())
                 .foregroundStyle(.secondary)
                 .labelStyle(.titleOnly)
@@ -70,7 +70,7 @@ private struct SmallNutrientRow: View {
                 .frame(width: 10, alignment: .leading)
 
             if isComplete {
-                Label("Done", systemImage: "checkmark.circle.fill")
+                Label(.done, systemImage: "checkmark.circle.fill")
                     .labelStyle(.titleAndIcon)
                     .font(.caption2.bold())
                     .foregroundStyle(.green)
@@ -103,7 +103,7 @@ private struct MediumWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text("Nutrition").font(.headline.bold())
+                Text(.nutrition).font(.headline.bold())
                 Spacer()
                 Text(entry.date, format: .dateTime.weekday(.wide))
                     .font(.caption).foregroundStyle(.secondary)
@@ -141,7 +141,7 @@ private struct MediumNutrientRow: View {
                 .frame(width: 48, alignment: .leading)
 
             if isComplete {
-                Label("Congrats!", systemImage: "trophy.fill")
+                Label(.congrats, systemImage: "trophy.fill")
                     .font(.caption.bold())
                     .foregroundStyle(.green)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -179,7 +179,7 @@ private struct LargeWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("Nutrition Tracker").font(.headline.bold())
+                Text(.nutritionTracker).font(.headline.bold())
                 Spacer()
                 Text(entry.date, format: .dateTime.weekday(.wide))
                     .font(.caption).foregroundStyle(.secondary)
@@ -233,7 +233,7 @@ private struct LargeNutrientCard: View {
                         .font(.title3).foregroundStyle(nutrient.color)
 
                     VStack(alignment: .leading, spacing: 1) {
-                        Text("Congrats! Goal reached")
+                        Text(.congratsGoalReached)
                             .font(.caption.bold()).foregroundStyle(.green)
                         Text("\(value, format: .number.precision(.fractionLength(1))) / \(goal, format: .number.precision(.fractionLength(1))) servings")
                             .font(.caption2).foregroundStyle(.secondary)

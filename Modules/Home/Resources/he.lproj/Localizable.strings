@@ -1,0 +1,26 @@
+/* Toolbar button that dismisses the Settings sheet without saving. */
+"Cancel" = "ביטול";
+
+/* Section header and navigation title for the settings screen. */
+"Daily Goals" = "יעדים יומיים";
+
+/* Section header and Picker label for the in-app language selector in Settings. */
+"Language" = "שפה";
+
+/* Main navigation title shown at the top of the daily tracker view. */
+"Nutrition Tracker" = "מעקב תזונה";
+
+/* Button that persists the updated daily nutrition goals and closes the settings sheet. */
+"Save Goals" = "שמור יעדים";
+
+/* Caption in the settings form explaining the purpose of the goal fields. */
+"Set your daily target servings for each macronutrient" = "הגדר את מספר המנות היומי לכל רכיב תזונתי";
+
+/* Accessibility label for the icon-only gear button that opens the settings sheet. */
+"Settings" = "הגדרות";
+
+/* App version footer in Settings. First %@ is the marketing version, second %@ is the build number. */
+"Version %@ (%@)" = "גרסה %1$@ (%2$@)";
+
+/* Section header above the 7-day nutrient trend chart. */
+"Weekly Overview" = "סקירה שבועית";

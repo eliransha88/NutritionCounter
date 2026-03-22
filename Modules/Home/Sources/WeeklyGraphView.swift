@@ -11,7 +11,7 @@ public struct WeeklyGraphView: View {
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Weekly Overview")
+            Text(NutritionHomeStrings.weeklyOverview)
                 .font(.headline)
                 .foregroundStyle(.primary)
                 .transition(.opacity.combined(with: .move(edge: .trailing)))

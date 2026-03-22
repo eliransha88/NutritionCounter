@@ -114,13 +114,27 @@ open NutritionCounter.xcworkspace
 
 Before building, ensure the **App Group** `group.com.eliransharabi.NutritionCounter` is registered in your Apple Developer account and linked in Signing & Capabilities for both the **NutritionCounter** app and **NutritionAppWidget** extension targets.
 
+### Test plans
+
+Tuist declares **shared schemes** in `Tuist/ProjectDescriptionHelpers/NutritionCounter+Schemes.swift` (and passes them from `Project.swift`). After **`tuist generate`**, pick the scheme you want in Xcode:
+
+| Scheme | Test plan(s) | Contents |
+|--------|----------------|----------|
+| **NutritionCounter** (main) | Both plans (Unit is the default; switch in the Test action) | Unit + system targets from the two `.xctestplan` files below |
+| **NutritionCounter-Unit** | `TestPlans/NutritionCounter-Unit.xctestplan` only | `NutritionCoreTests`, `NutritionUITests`, `NutritionHomeTests` |
+| **NutritionCounter-System** | `TestPlans/NutritionCounter-System.xctestplan` only | `NutritionCoreSystemTests`, `NutritionUISystemTests`, `NutritionHomeSystemTests` |
+
+The per-target schemes Tuist generates by default are still available for individual modules.
+
+After **`tuist generate`**, if target UUIDs change, reopen the test plan in Xcode and re-save if Xcode reports missing targets.
+
 ---
 
 ## Project structure
 
 ```
 NutritionCounter/
-├── Project.swift                 ← Tuist project + target list
+├── Project.swift                 ← Tuist project + targets + custom test schemes
 ├── Tuist.swift
 ├── Tuist/ProjectDescriptionHelpers/
 ├── Modules/                      ← feature frameworks (Core, Home, UI, …)
@@ -128,6 +142,7 @@ NutritionCounter/
 ├── NutritionAppWidget/           ← widget extension
 ├── Tests/                        ← unit & KIF system tests per module
 ├── Derived/                      ← gitignored locally; Tuist bundle + strings codegen
+├── TestPlans/                    ← Unit vs System `.xctestplan` files
 ├── scripts/create-module.sh      ← scaffold a new Nutrition<Name> module
 └── NutritionCounter.xcworkspace  ← open this after `tuist generate`
 ```

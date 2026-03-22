@@ -1,0 +1,62 @@
+{
+  "configurations" : [
+    {
+      "id" : "F8E4C3B2-5D60-4F9E-A2B0-1E3F40516273",
+      "name" : "Default",
+      "options" : { }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : true,
+    "codeCoverageTargets" : [
+      {
+        "containerPath" : "container:NutritionCounter.xcodeproj",
+        "identifier" : "19D26DF56552DA78A12E6024",
+        "name" : "NutritionCore"
+      },
+      {
+        "containerPath" : "container:NutritionCounter.xcodeproj",
+        "identifier" : "84D719B8C0F9F9ACA249A90B",
+        "name" : "NutritionUI"
+      },
+      {
+        "containerPath" : "container:NutritionCounter.xcodeproj",
+        "identifier" : "02549EE967C846C8469BADBC",
+        "name" : "NutritionHome"
+      },
+      {
+        "containerPath" : "container:NutritionCounter.xcodeproj",
+        "identifier" : "B6D501DA1BBC811625F76D9B",
+        "name" : "NutritionCounter"
+      }
+    ],
+    "language" : "en",
+    "region" : "US",
+    "testTimeoutsEnabled" : true,
+    "defaultTestExecutionTimeAllowance" : 120
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:NutritionCounter.xcodeproj",
+        "identifier" : "850154A9017F903CA1874EB3",
+        "name" : "NutritionCoreSystemTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NutritionCounter.xcodeproj",
+        "identifier" : "BC6FFF5C79B6C032B56BDFB3",
+        "name" : "NutritionUISystemTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NutritionCounter.xcodeproj",
+        "identifier" : "033FB640CED7FE372C18D8B8",
+        "name" : "NutritionHomeSystemTests"
+      }
+    }
+  ],
+  "version" : 1
+}

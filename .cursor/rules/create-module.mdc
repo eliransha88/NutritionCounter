@@ -102,8 +102,7 @@ public extension Target {
             sources: ["Tests/Nutrition<Name>SystemTests/**/*.swift"],
             dependencies: [
                 .target(name: "NutritionCounter"),      // host app for BUNDLE_LOADER/TEST_HOST
-                .target(name: "NutritionTestsHelper"),  // SystemTestCase + KIF re-export
-                .package(product: "KIF"),
+                .target(name: "NutritionTestsHelper"),  // SystemTestCase + KIF (link KIF only here, not again below)
             ],
             settings: .settings(base: ["OTHER_LDFLAGS": "$(inherited) -ObjC"])
         )
@@ -215,6 +214,7 @@ Text(NutritionUIStrings.decrease(nutrient.localizedName))
 |---|---|
 | `product: .unitTests` for KIF targets | KIF is in-process; `.uiTests` is out-of-process XCUITest |
 | `OTHER_LDFLAGS: -ObjC` on system test targets | Forces Obj-C categories (KIF extensions on UIView, XCTestCase) to load |
+| Never `.package(product: "KIF")` on system tests | KIF is already inside `NutritionTestsHelper`; linking twice → **duplicate symbol** errors |
 | Inherit `SystemTestCase`, not `KIFTestCase` | `tester` is an Obj-C macro invisible to Swift; `SystemTestCase` provides the Swift wrapper |
 | One Cuckoo generate script (in `NutritionCoreTests`) | Generates all `GeneratedMocks.swift` files in one pass to avoid races |
 

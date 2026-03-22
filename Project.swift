@@ -29,5 +29,6 @@ let project = Project(
         .nutritionHomeTests,
         .nutritionHomeSystemTests,
 
-    ]
+    ],
+    schemes: NutritionCounterSchemes.all
 )

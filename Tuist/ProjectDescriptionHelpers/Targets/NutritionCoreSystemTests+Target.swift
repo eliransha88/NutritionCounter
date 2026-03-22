@@ -14,7 +14,6 @@ public extension Target {
             dependencies: [
                 .target(name: "NutritionCounter"),
                 .target(name: "NutritionTestsHelper"),
-                .package(product: "KIF"),
             ],
             settings: .settings(base: ["OTHER_LDFLAGS": "$(inherited) -ObjC"])
         )

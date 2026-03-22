@@ -18,7 +18,12 @@ public extension Target {
             dependencies: [
                 .package(product: "KIF"),
             ],
-            settings: .settings(base: ["OTHER_LDFLAGS": "$(inherited) -ObjC"])
+            settings: .settings(base: [
+                // KIF headers import XCTest; static frameworks do not get XCTest on the
+                // Clang scanner path by default — required for explicit modules / build-for-testing.
+                "ENABLE_TESTING_SEARCH_PATHS": "YES",
+                "OTHER_LDFLAGS": "$(inherited) -ObjC",
+            ])
         )
     }
 }

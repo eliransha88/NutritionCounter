@@ -147,8 +147,7 @@ public extension Target {
             sources: ["Tests/__TYPE__SystemTests/**/*.swift"],
             dependencies: [
                 .target(name: "NutritionCounter"),     // host app → sets BUNDLE_LOADER/TEST_HOST
-                .target(name: "NutritionTestsHelper"), // SystemTestCase + @_exported KIF
-                .package(product: "KIF"),
+                .target(name: "NutritionTestsHelper"), // SystemTestCase + KIF (do not add .package(KIF) — duplicate symbols)
             ],
             settings: .settings(base: ["OTHER_LDFLAGS": "$(inherited) -ObjC"])
         )

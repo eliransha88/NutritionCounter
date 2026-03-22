@@ -9,15 +9,15 @@ final class NutrientTypeTests: XCTestCase {
     func testRawValue_ProteinIsCorrect() {
         // GIVEN/WHEN: The protein nutrient type
         // THEN: Its raw string value matches the expected key
-        XCTAssertEqual(NutrientType.protein.rawValue, "Protein")
+        XCTAssertEqual(NutrientType.protein.localizedName, "Protein")
     }
 
     func testRawValue_CarbsIsCorrect() {
-        XCTAssertEqual(NutrientType.carbs.rawValue, "Carbs")
+        XCTAssertEqual(NutrientType.carbs.localizedName, "Carbs")
     }
 
     func testRawValue_FatIsCorrect() {
-        XCTAssertEqual(NutrientType.fat.rawValue, "Fat")
+        XCTAssertEqual(NutrientType.fat.localizedName, "Fat")
     }
 
     // MARK: - color Tests
@@ -71,7 +71,7 @@ final class NutrientTypeTests: XCTestCase {
         for type in NutrientType.allCases {
             XCTAssertFalse(
                 type.localizedAbbreviation.isEmpty,
-                "\(type.rawValue) abbreviation should not be empty"
+                "\(type.localizedName) abbreviation should not be empty"
             )
         }
     }
@@ -82,7 +82,7 @@ final class NutrientTypeTests: XCTestCase {
         for type in NutrientType.allCases {
             XCTAssertEqual(
                 type.localizedAbbreviation.count, 1,
-                "\(type.rawValue) abbreviation should be a single character"
+                "\(type.localizedName) abbreviation should be a single character"
             )
         }
     }

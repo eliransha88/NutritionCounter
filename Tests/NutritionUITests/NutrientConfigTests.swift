@@ -64,15 +64,15 @@ final class NutrientConfigTests: XCTestCase {
         // GIVEN: The NutrientCounterView uses `nutrient.rawValue` as the
         //        base string for its increment/decrement button labels.
         // WHEN/THEN: Raw values align with what KIF tests assert
-        XCTAssertEqual(NutrientType.protein.rawValue, "Protein")
-        XCTAssertEqual(NutrientType.carbs.rawValue,   "Carbs")
-        XCTAssertEqual(NutrientType.fat.rawValue,     "Fat")
+        XCTAssertEqual(NutrientType.protein.localizedName, "Protein")
+        XCTAssertEqual(NutrientType.carbs.localizedName,   "Carbs")
+        XCTAssertEqual(NutrientType.fat.localizedName,     "Fat")
     }
 
     func testNutrientType_IncrementLabelFormat() {
         // GIVEN: NutrientCounterView uses "Increase <rawValue>" for the + button
         for type in NutrientType.allCases {
-            let label = "Increase \(type.rawValue)"
+            let label = "Increase \(type.localizedName)"
 
             // THEN: The label is non-empty and starts with "Increase"
             XCTAssertTrue(label.hasPrefix("Increase"),
@@ -83,7 +83,7 @@ final class NutrientConfigTests: XCTestCase {
     func testNutrientType_DecrementLabelFormat() {
         // GIVEN: NutrientCounterView uses "Decrease <rawValue>" for the − button
         for type in NutrientType.allCases {
-            let label = "Decrease \(type.rawValue)"
+            let label = "Decrease \(type.localizedName)"
 
             // THEN: The label starts with "Decrease"
             XCTAssertTrue(label.hasPrefix("Decrease"),
